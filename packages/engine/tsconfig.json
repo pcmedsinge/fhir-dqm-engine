@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./dist",
+    "rootDir": "./src",
     "baseUrl": "./",
     "incremental": true,
     "resolvePackageJsonExports": true,
@@ -10,10 +11,6 @@
     "allowSyntheticDefaultImports": true,
     "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true,
-    "removeComments": true,
-    "paths": {
-      "@pramana/shared": ["../../packages/shared/src/index.ts"],
-      "@pramana/shared/*": ["../../packages/shared/src/*"]
-    }
+    "removeComments": true
   }
 }
