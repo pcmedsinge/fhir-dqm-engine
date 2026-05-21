@@ -27,24 +27,18 @@ async function bootstrap(): Promise<void> {
   });
 
   // Body size limit
-  app.use(
-    (
-      req: { headers: Record<string, string> },
-      res: unknown,
-      next: () => void,
-    ) => {
-      // NestJS / Express default is 100kb; enforce explicit 1mb cap via content-length check
-      const contentLength = parseInt(req.headers['content-length'] ?? '0', 10);
-      if (contentLength > 1_048_576) {
-        // 1 MB
-        (res as { status: (n: number) => { json: (b: unknown) => void } })
-          .status(413)
-          .json({ statusCode: 413, message: 'Payload Too Large' });
-        return;
-      }
-      next();
-    },
-  );
+  app.use((req: { headers: Record<string, string> }, res: unknown, next: () => void) => {
+    // NestJS / Express default is 100kb; enforce explicit 1mb cap via content-length check
+    const contentLength = parseInt(req.headers['content-length'] ?? '0', 10);
+    if (contentLength > 1_048_576) {
+      // 1 MB
+      (res as { status: (n: number) => { json: (b: unknown) => void } })
+        .status(413)
+        .json({ statusCode: 413, message: 'Payload Too Large' });
+      return;
+    }
+    next();
+  });
 
   // Swagger at /api
   const swaggerConfig = new DocumentBuilder()
