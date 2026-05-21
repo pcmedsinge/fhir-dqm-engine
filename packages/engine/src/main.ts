@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { Logger } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import { SHARED_VERSION } from '@pramana/shared';
 import { AppModule } from './app.module';
 
 const logger = new Logger('Bootstrap');
@@ -59,6 +60,7 @@ async function bootstrap(): Promise<void> {
   await app.listen(port);
   logger.log(`Pramana engine listening on port ${port.toString()}`);
   logger.log(`Swagger UI: http://localhost:${port.toString()}/api`);
+  logger.log(`@pramana/shared v${SHARED_VERSION}`);
 }
 
 bootstrap().catch((err: unknown) => {

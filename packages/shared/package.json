@@ -1,0 +1,20 @@
+{
+  "name": "@pramana/shared",
+  "version": "0.1.0-alpha.1",
+  "description": "Shared domain types, interfaces, and constants for Pramana packages",
+  "author": "Parag Singe",
+  "private": true,
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "lint": "eslint \"{src}/**/*.ts\""
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

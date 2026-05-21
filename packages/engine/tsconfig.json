@@ -10,6 +10,10 @@
     "allowSyntheticDefaultImports": true,
     "strictBindCallApply": true,
     "noFallthroughCasesInSwitch": true,
-    "removeComments": true
+    "removeComments": true,
+    "paths": {
+      "@pramana/shared": ["../../packages/shared/src/index.ts"],
+      "@pramana/shared/*": ["../../packages/shared/src/*"]
+    }
   }
 }
