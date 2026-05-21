@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "incremental": true,
     "resolvePackageJsonExports": true,
+    "resolveJsonModule": true,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "strictBindCallApply": true,
