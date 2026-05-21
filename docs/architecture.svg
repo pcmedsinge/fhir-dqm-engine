@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 760" width="800" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#6B7280"/>
+    </marker>
+  </defs>
+
+  <text x="400" y="30" text-anchor="middle" font-size="20" font-weight="700" fill="#9CA3AF">Pramana — architecture overview</text>
+  <text x="400" y="55" text-anchor="middle" font-size="13" fill="#6B7280">FHIR-native digital quality measure engine with AI care-gap closure, exposed via MCP</text>
+
+  <rect x="50" y="80" width="700" height="90" rx="10" fill="#1E40AF"/>
+  <text x="400" y="115" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">Data ingest</text>
+  <text x="400" y="140" text-anchor="middle" font-size="13" fill="#DBEAFE">FHIR R4 / US Core bulk import   ·   Claims (CARIN BB / X12 → FHIR)   ·   HL7 v2 ADT feeds</text>
+
+  <line x1="400" y1="180" x2="400" y2="210" stroke="#6B7280" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="50" y="220" width="700" height="90" rx="10" fill="#047857"/>
+  <text x="400" y="255" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">Normalization &amp; provenance</text>
+  <text x="400" y="280" text-anchor="middle" font-size="13" fill="#D1FAE5">US Core conformance   ·   Terminology normalization (LOINC, SNOMED, RxNorm, ICD-10)   ·   Provenance</text>
+
+  <line x1="400" y1="320" x2="400" y2="350" stroke="#6B7280" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="50" y="360" width="700" height="90" rx="10" fill="#B45309"/>
+  <text x="400" y="395" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">dQM execution engine</text>
+  <text x="400" y="420" text-anchor="middle" font-size="13" fill="#FEF3C7">CQL engine   ·   HEDIS dQMs + CMS FHIR eCQMs   ·   FHIR MeasureReport output</text>
+
+  <line x1="400" y1="460" x2="400" y2="490" stroke="#6B7280" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="50" y="500" width="700" height="90" rx="10" fill="#9D174D"/>
+  <text x="400" y="535" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">AI care-gap layer</text>
+  <text x="400" y="560" text-anchor="middle" font-size="13" fill="#FCE7F3">Note-to-FHIR extraction with Provenance   ·   Explainable reasoning   ·   Outreach drafts</text>
+
+  <line x1="400" y1="600" x2="400" y2="630" stroke="#6B7280" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <rect x="50" y="640" width="700" height="90" rx="10" fill="#5B21B6"/>
+  <text x="400" y="675" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFFFF">MCP server + dashboard</text>
+  <text x="400" y="700" text-anchor="middle" font-size="13" fill="#EDE9FE">Natural-language interface   ·   Cohort and member views   ·   Stars projection</text>
+</svg>
