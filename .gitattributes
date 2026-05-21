@@ -1,0 +1,18 @@
+# Force LF line endings for all text files (source runs on Linux in Docker)
+* text=auto eol=lf
+
+# Explicitly binary — never touch line endings
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary
+*.pdf binary
+*.zip binary
+*.tar.gz binary
+*.wasm binary
+
+# Lock files — treat as text but never reformat
+pnpm-lock.yaml text eol=lf
+package-lock.json text eol=lf
