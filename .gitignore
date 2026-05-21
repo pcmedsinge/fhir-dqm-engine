@@ -134,8 +134,7 @@ PublishScripts/
 # NuGet
 *.nupkg
 *.snupkg
-**/packages/*
-!**/packages/build/
+# NOTE: **/packages/* intentionally removed — conflicts with pnpm monorepo packages/ dir
 *.nuget.props
 *.nuget.targets
 

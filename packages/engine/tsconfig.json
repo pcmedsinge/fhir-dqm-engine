@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "resolvePackageJsonExports": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "strictBindCallApply": true,
+    "noFallthroughCasesInSwitch": true,
+    "removeComments": true
+  }
+}
