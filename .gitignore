@@ -1,0 +1,276 @@
+# =============================================================
+# fhir-dqm-engine / Pramana — .gitignore
+# Stack: Python (FastAPI) + .NET 8 + Java (cql-engine) + Node
+# =============================================================
+
+
+# -------------------------------------------------------------
+# CRITICAL — healthcare data safety
+# -------------------------------------------------------------
+# Never commit real or test PHI. Only commit FHIR data that is
+# either synthetic (e.g., Synthea-generated) AND clearly named,
+# or shipped as small fixtures inside a `fixtures/` folder.
+
+# Real / unverified clinical data — never commit
+*.phi
+*.phi.json
+*.phi.ndjson
+patient-data/
+real-data/
+phi/
+
+# Synthea output (large; regenerate locally instead)
+output/
+synthea/
+.synthea/
+synthea-output/
+*.synthea.json
+
+# Large FHIR bundles and bulk-data exports
+*.bundle.large.json
+bulk-export/
+ndjson-export/
+
+# Allow: small named fixtures under fixtures/
+# (these are explicitly safe to commit)
+!fixtures/
+!fixtures/**
+
+
+# -------------------------------------------------------------
+# Secrets, credentials, environment files
+# -------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.env.local
+secrets/
+secrets.json
+*.pem
+*.key
+*.pfx
+*.p12
+credentials.json
+api-keys.txt
+.aws/
+.azure/
+
+
+# -------------------------------------------------------------
+# Python
+# -------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.virtualenv/
+
+# Packaging / build
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Type checkers
+.mypy_cache/
+.pyre/
+.pytype/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+
+# -------------------------------------------------------------
+# .NET / C#
+# -------------------------------------------------------------
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.cache
+*.dbmdl
+*.dbproj.schemaviewcache
+*.jfm
+
+# Visual Studio
+.vs/
+*.[Pp]ublish.xml
+*.azurePubxml
+PublishScripts/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+
+# -------------------------------------------------------------
+# Java (for cql-engine integration)
+# -------------------------------------------------------------
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+
+# -------------------------------------------------------------
+# Node.js / frontend
+# -------------------------------------------------------------
+node_modules/
+.pnp.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm
+.yarn-integrity
+.next/
+.nuxt/
+.vite/
+.parcel-cache/
+out/
+
+
+# -------------------------------------------------------------
+# Docker
+# -------------------------------------------------------------
+*.local.yml
+docker-compose.override.yml
+
+
+# -------------------------------------------------------------
+# IDE / editors
+# -------------------------------------------------------------
+# VS Code — keep workspace settings, ignore local state
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+*.code-workspace
+
+# JetBrains (Rider, IntelliJ, PyCharm)
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Vim / Emacs
+*.swp
+*.swo
+*~
+.\#*
+\#*\#
+
+# Sublime
+*.sublime-project
+*.sublime-workspace
+
+
+# -------------------------------------------------------------
+# OS files
+# -------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+
+# -------------------------------------------------------------
+# Logs and temp
+# -------------------------------------------------------------
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+.cache/
+tmp/
+temp/
+
+
+# -------------------------------------------------------------
+# Project-specific scratch
+# -------------------------------------------------------------
+# Where I drop quick experiments that shouldn't ship
+scratch/
+sandbox/
+playground/
+notes-local/
+
+# Generated MeasureReports during development
+measure-reports-local/
+*.measure-report.local.json
