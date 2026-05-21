@@ -1,6 +1,7 @@
 # =============================================================
 # fhir-dqm-engine / Pramana — .gitignore
-# Stack: Python (FastAPI) + .NET 8 + Java (cql-engine) + Node
+# Stack: TypeScript/NestJS (primary) — Python/.NET/Java patterns
+#        retained for safety (historical multi-stack origin)
 # =============================================================
 
 
@@ -182,6 +183,15 @@ pnpm-debug.log*
 .vite/
 .parcel-cache/
 out/
+
+
+# -------------------------------------------------------------
+# TypeScript / NestJS build artifacts
+# -------------------------------------------------------------
+coverage/
+*.tsbuildinfo
+.eslintcache
+.swc/
 
 
 # -------------------------------------------------------------
