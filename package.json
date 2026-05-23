@@ -11,7 +11,7 @@
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
     "build": "pnpm -r build",
-    "prepare": "husky"
+    "prepare": "node -e \"require('fs').existsSync('node_modules/.bin/husky')&&require('child_process').execSync('husky',{stdio:'inherit'})\""
   },
   "lint-staged": {
     "*.{json,yaml,yml,md}": [

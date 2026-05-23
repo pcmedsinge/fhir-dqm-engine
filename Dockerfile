@@ -20,7 +20,8 @@ COPY packages/engine/package.json ./packages/engine/
 COPY packages/shared/package.json ./packages/shared/
 
 # Install all deps (dev + prod) with frozen lockfile
-RUN pnpm install --frozen-lockfile
+# HUSKY=0 prevents the prepare script from trying to set up git hooks
+RUN HUSKY=0 pnpm install --frozen-lockfile
 
 # Copy source
 COPY tsconfig.base.json .
@@ -43,8 +44,8 @@ COPY package.json pnpm-lock.yaml ./
 COPY packages/engine/package.json ./packages/engine/
 COPY packages/shared/package.json ./packages/shared/
 
-# Production deps only
-RUN pnpm install --frozen-lockfile --prod
+# Production deps only; --ignore-scripts skips husky/postinstall hooks (app doesn't need them)
+RUN pnpm install --frozen-lockfile --prod --ignore-scripts
 
 # Copy compiled output from builder
 COPY --from=builder /build/packages/engine/dist ./packages/engine/dist
