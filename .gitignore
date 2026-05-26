@@ -27,6 +27,10 @@ synthea/
 synthea-output/
 *.synthea.json
 
+# Phase 2: Synthea generator output (tools/synthea/output/)
+tools/synthea/output/
+.cache/synthea/
+
 # Large FHIR bundles and bulk-data exports
 *.bundle.large.json
 bulk-export/
