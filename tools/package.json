@@ -1,0 +1,38 @@
+{
+  "name": "@pramana/tools",
+  "version": "0.2.0-alpha.1",
+  "description": "Dev-only tools: Synthea generator + HAPI bulk loader",
+  "private": true,
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "test": "jest --passWithNoTests",
+    "lint": "eslint loader/**/*.ts synthea/**/*.ts --max-warnings=0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.0",
+    "jest": "^30.0.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.0.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.spec.ts"
+    ],
+    "transform": {
+      "^.+\\.ts$": [
+        "ts-jest",
+        {
+          "tsconfig": {
+            "module": "CommonJS"
+          }
+        }
+      ]
+    }
+  }
+}
