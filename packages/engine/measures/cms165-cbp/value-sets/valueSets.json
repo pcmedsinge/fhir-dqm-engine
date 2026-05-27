@@ -1,11 +1,6 @@
 {
   "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591": [
-    {
-      "code": "1",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "MEDICARE"
-    },
+    { "code": "1", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "MEDICARE" },
     {
       "code": "11",
       "system": "https://nahdo.org/sopt",
@@ -114,12 +109,7 @@
       "version": "9.2",
       "display": "Medicare Pharmacy Benefit Manager"
     },
-    {
-      "code": "2",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "MEDICAID"
-    },
+    { "code": "2", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "MEDICAID" },
     {
       "code": "21",
       "system": "https://nahdo.org/sopt",
@@ -444,18 +434,8 @@
       "version": "9.2",
       "display": "Disaster-related (includes Covid-19)"
     },
-    {
-      "code": "349",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "Other"
-    },
-    {
-      "code": "35",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "Black Lung"
-    },
+    { "code": "349", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "Other" },
+    { "code": "35", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "Black Lung" },
     {
       "code": "36",
       "system": "https://nahdo.org/sopt",
@@ -492,24 +472,9 @@
       "version": "9.2",
       "display": "Local - Managed care"
     },
-    {
-      "code": "3711",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "HMO"
-    },
-    {
-      "code": "3712",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "PPO"
-    },
-    {
-      "code": "3713",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "POS"
-    },
+    { "code": "3711", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "HMO" },
+    { "code": "3712", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "PPO" },
+    { "code": "3713", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "POS" },
     {
       "code": "372",
       "system": "https://nahdo.org/sopt",
@@ -732,18 +697,8 @@
       "version": "9.2",
       "display": "Specialized Stand-Alone Plan"
     },
-    {
-      "code": "561",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "Dental"
-    },
-    {
-      "code": "562",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "Vision"
-    },
+    { "code": "561", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "Dental" },
+    { "code": "562", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "Vision" },
     {
       "code": "59",
       "system": "https://nahdo.org/sopt",
@@ -828,24 +783,9 @@
       "version": "9.2",
       "display": "MANAGED CARE, UNSPECIFIED (to be used only if one can't distinguish public from private)"
     },
-    {
-      "code": "71",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "HMO"
-    },
-    {
-      "code": "72",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "PPO"
-    },
-    {
-      "code": "73",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "POS"
-    },
+    { "code": "71", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "HMO" },
+    { "code": "72", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "PPO" },
+    { "code": "73", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "POS" },
     {
       "code": "79",
       "system": "https://nahdo.org/sopt",
@@ -864,18 +804,8 @@
       "version": "9.2",
       "display": "Self-pay (Includes applicants for insurance and Medicaid applicants)"
     },
-    {
-      "code": "82",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "No Charge"
-    },
-    {
-      "code": "821",
-      "system": "https://nahdo.org/sopt",
-      "version": "9.2",
-      "display": "Charity"
-    },
+    { "code": "82", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "No Charge" },
+    { "code": "821", "system": "https://nahdo.org/sopt", "version": "9.2", "display": "Charity" },
     {
       "code": "822",
       "system": "https://nahdo.org/sopt",
@@ -4621,6 +4551,48 @@
       "system": "http://snomed.info/sct",
       "version": "2023-09",
       "display": "Postoperative follow-up visit (procedure)"
+    },
+    {
+      "code": "185347001",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Encounter for check up (procedure)"
+    },
+    {
+      "code": "185349003",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Encounter for check up (procedure)"
+    },
+    {
+      "code": "162673000",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "General examination of patient (procedure)"
+    },
+    {
+      "code": "185345009",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Encounter for symptom (procedure)"
+    },
+    {
+      "code": "390906007",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Follow-up encounter (procedure)"
+    },
+    {
+      "code": "308335008",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Patient encounter procedure"
+    },
+    {
+      "code": "698314001",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Consultation for treatment (procedure)"
     }
   ],
   "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1089": [
