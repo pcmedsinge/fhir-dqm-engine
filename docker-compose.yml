@@ -29,8 +29,7 @@ services:
       # from .env and points at http://localhost:8080/fhir instead.
       FHIR_SERVER_URL: http://hapi-fhir:8080/fhir
     depends_on:
-      hapi-fhir:
-        condition: service_healthy
+      - hapi-fhir
     networks:
       - pramana
     profiles:
@@ -72,14 +71,9 @@ services:
       hapi.fhir.subscription.resthook_enabled: 'false'
       hapi.fhir.subscription.websocket_enabled: 'false'
       hapi.fhir.allow_external_references: 'true'
-    healthcheck:
-      test:
-        - CMD-SHELL
-        - wget -q --spider http://localhost:8080/fhir/metadata || exit 1
-      interval: 10s
-      timeout: 10s
-      retries: 18
-      start_period: 90s
+    # No healthcheck: the HAPI v8 image is distroless (only java binary) — no shell
+    # or wget/curl available for exec-based checks. Readiness is verified by the
+    # loader (polls /fhir/metadata for up to 180 s) and the engine's FHIR indicator.
     networks:
       - pramana
 
