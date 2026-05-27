@@ -29,7 +29,7 @@ export class MeasureReportService {
     for (const r of results.values()) {
       if (r.initialPopulation) ipp++;
       if (r.denominator) denom++;
-      if (r.denominatorExclusion) denomExcl++;
+      if (r.denominator && r.denominatorExclusion) denomExcl++;
       if (r.denominator && !r.denominatorExclusion && r.numerator) numerator++;
     }
 
