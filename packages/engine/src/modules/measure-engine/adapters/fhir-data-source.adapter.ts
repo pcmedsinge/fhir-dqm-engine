@@ -77,24 +77,19 @@ export class FhirDataSourceAdapter {
     params: Record<string, string>,
   ): Promise<AnyResource[]> {
     const results: AnyResource[] = [];
-    let nextParams: Record<string, string> | null = params;
 
-    while (nextParams) {
-      const bundle = await this.fhirClient.searchResources<AnyResource>(resourceType, nextParams);
+    let bundle = await this.fhirClient.searchResources<AnyResource>(resourceType, params);
+
+    while (true) {
       const entries: AnyResource[] =
         bundle.entry?.map((e) => e.resource as AnyResource).filter(Boolean) ?? [];
       results.push(...entries);
 
       const bundleAny = bundle as unknown as { link?: Array<{ relation: string; url: string }> };
       const nextLink = bundleAny.link?.find((l) => l.relation === 'next');
-      if (nextLink) {
-        const url = new URL(nextLink.url);
-        nextParams = Object.fromEntries(url.searchParams.entries());
-      } else {
-        nextParams = null;
-      }
+      if (!nextLink || entries.length === 0) break;
 
-      if (entries.length === 0) break;
+      bundle = await this.fhirClient.fetchPageByUrl<AnyResource>(nextLink.url);
     }
 
     return results;

@@ -51,6 +51,12 @@ export class FhirClientService {
     return this.request<T>(`/${resourceType}/${id}`);
   }
 
+  async fetchPageByUrl<T extends FhirResource>(absoluteUrl: string): Promise<FhirBundle<T>> {
+    this.logger.log(`[page] ${absoluteUrl}`);
+    const res = await this.client.get<FhirBundle<T>>(absoluteUrl, { baseURL: '' });
+    return res.data;
+  }
+
   private async request<T>(
     path: string,
     options: { params?: Record<string, string>; timeout?: number } = {},
