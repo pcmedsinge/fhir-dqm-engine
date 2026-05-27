@@ -1,0 +1,1519 @@
+{
+  "library": {
+    "localId": "0",
+    "annotation": [
+      {
+        "translatorVersion": "3.25.0",
+        "translatorOptions": "EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion",
+        "signatureLevel": "Overloads",
+        "type": "CqlToElmInfo"
+      },
+      {
+        "type": "Annotation",
+        "s": {
+          "r": "235",
+          "s": [
+            {
+              "value": ["", "library PalliativeCare version '1.11.000'"]
+            }
+          ]
+        }
+      }
+    ],
+    "identifier": {
+      "id": "PalliativeCare",
+      "system": "http://ecqi.healthit.gov/ecqms",
+      "version": "1.11.000"
+    },
+    "schemaIdentifier": {
+      "id": "urn:hl7-org:elm",
+      "version": "r1"
+    },
+    "usings": {
+      "def": [
+        {
+          "localId": "1",
+          "localIdentifier": "System",
+          "uri": "urn:hl7-org:elm-types:r1"
+        },
+        {
+          "localId": "206",
+          "locator": "3:1-3:28",
+          "localIdentifier": "QICore",
+          "uri": "http://hl7.org/fhir",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "206",
+                "s": [
+                  {
+                    "value": ["", "using "]
+                  },
+                  {
+                    "s": [
+                      {
+                        "value": ["QICore"]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [" version '4.1.1'"]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "includes": {
+      "def": [
+        {
+          "localId": "208",
+          "locator": "5:1-5:56",
+          "localIdentifier": "FHIRHelpers",
+          "path": "http://ecqi.healthit.gov/ecqms/FHIRHelpers",
+          "version": "4.4.000",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "208",
+                "s": [
+                  {
+                    "value": ["", "include "]
+                  },
+                  {
+                    "s": [
+                      {
+                        "value": ["FHIRHelpers"]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [" version ", "'4.4.000'", " called ", "FHIRHelpers"]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "localId": "210",
+          "locator": "6:1-6:58",
+          "localIdentifier": "QICoreCommon",
+          "path": "http://ecqi.healthit.gov/ecqms/QICoreCommon",
+          "version": "2.1.000",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "210",
+                "s": [
+                  {
+                    "value": ["", "include "]
+                  },
+                  {
+                    "s": [
+                      {
+                        "value": ["QICoreCommon"]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [" version ", "'2.1.000'", " called ", "QICoreCommon"]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "localId": "212",
+          "locator": "7:1-7:46",
+          "localIdentifier": "Status",
+          "path": "http://ecqi.healthit.gov/ecqms/Status",
+          "version": "1.8.000",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "212",
+                "s": [
+                  {
+                    "value": ["", "include "]
+                  },
+                  {
+                    "s": [
+                      {
+                        "value": ["Status"]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [" version ", "'1.8.000'", " called ", "Status"]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "parameters": {
+      "def": [
+        {
+          "localId": "225",
+          "locator": "17:1-17:49",
+          "name": "Measurement Period",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "225",
+                "s": [
+                  {
+                    "value": ["", "parameter ", "\"Measurement Period\"", " "]
+                  },
+                  {
+                    "r": "226",
+                    "s": [
+                      {
+                        "value": ["Interval<"]
+                      },
+                      {
+                        "r": "227",
+                        "s": [
+                          {
+                            "value": ["DateTime"]
+                          }
+                        ]
+                      },
+                      {
+                        "value": [">"]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "parameterTypeSpecifier": {
+            "localId": "226",
+            "locator": "17:32-17:49",
+            "type": "IntervalTypeSpecifier",
+            "pointType": {
+              "localId": "227",
+              "locator": "17:41-17:48",
+              "name": "{urn:hl7-org:elm-types:r1}DateTime",
+              "type": "NamedTypeSpecifier"
+            }
+          }
+        }
+      ]
+    },
+    "codeSystems": {
+      "def": [
+        {
+          "localId": "214",
+          "locator": "9:1-9:38",
+          "name": "LOINC",
+          "id": "http://loinc.org",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "214",
+                "s": [
+                  {
+                    "value": ["", "codesystem ", "\"LOINC\"", ": ", "'http://loinc.org'"]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "valueSets": {
+      "def": [
+        {
+          "localId": "216",
+          "locator": "11:1-11:117",
+          "name": "Palliative Care Encounter",
+          "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "216",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "valueset ",
+                      "\"Palliative Care Encounter\"",
+                      ": ",
+                      "'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1090'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": []
+        },
+        {
+          "localId": "218",
+          "locator": "12:1-12:120",
+          "name": "Palliative Care Intervention",
+          "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "218",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "valueset ",
+                      "\"Palliative Care Intervention\"",
+                      ": ",
+                      "'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.198.12.1135'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": []
+        },
+        {
+          "localId": "220",
+          "locator": "13:1-13:110",
+          "name": "Palliative Care Diagnosis",
+          "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "220",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "valueset ",
+                      "\"Palliative Care Diagnosis\"",
+                      ": ",
+                      "'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.1167'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": []
+        }
+      ]
+    },
+    "codes": {
+      "def": [
+        {
+          "localId": "222",
+          "locator": "15:1-15:226",
+          "name": "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)",
+          "id": "71007-9",
+          "display": "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "222",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "code ",
+                      "\"Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)\"",
+                      ": ",
+                      "'71007-9'",
+                      " from "
+                    ]
+                  },
+                  {
+                    "r": "223",
+                    "s": [
+                      {
+                        "value": ["\"LOINC\""]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [
+                      " display ",
+                      "'Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": {
+            "localId": "223",
+            "locator": "15:117-15:123",
+            "name": "LOINC"
+          }
+        }
+      ]
+    },
+    "contexts": {
+      "def": [
+        {
+          "localId": "232",
+          "locator": "19:1-19:15",
+          "name": "Patient"
+        }
+      ]
+    },
+    "statements": {
+      "def": [
+        {
+          "localId": "230",
+          "locator": "19:1-19:15",
+          "name": "Patient",
+          "context": "Patient",
+          "expression": {
+            "localId": "231",
+            "type": "SingletonFrom",
+            "signature": [],
+            "operand": {
+              "localId": "229",
+              "locator": "19:1-19:15",
+              "dataType": "{http://hl7.org/fhir}Patient",
+              "templateId": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient",
+              "type": "Retrieve",
+              "include": [],
+              "codeFilter": [],
+              "dateFilter": [],
+              "otherFilter": []
+            }
+          }
+        },
+        {
+          "localId": "235",
+          "locator": "21:1-33:5",
+          "name": "Has Palliative Care in the Measurement Period",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "235",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "define ",
+                      "\"Has Palliative Care in the Measurement Period\"",
+                      ":\n  "
+                    ]
+                  },
+                  {
+                    "r": "236",
+                    "s": [
+                      {
+                        "r": "237",
+                        "s": [
+                          {
+                            "r": "238",
+                            "s": [
+                              {
+                                "r": "239",
+                                "s": [
+                                  {
+                                    "value": ["exists "]
+                                  },
+                                  {
+                                    "r": "259",
+                                    "s": [
+                                      {
+                                        "value": ["("]
+                                      },
+                                      {
+                                        "r": "259",
+                                        "s": [
+                                          {
+                                            "s": [
+                                              {
+                                                "r": "240",
+                                                "s": [
+                                                  {
+                                                    "r": "251",
+                                                    "s": [
+                                                      {
+                                                        "value": ["("]
+                                                      },
+                                                      {
+                                                        "r": "251",
+                                                        "s": [
+                                                          {
+                                                            "r": "243",
+                                                            "s": [
+                                                              {
+                                                                "value": ["("]
+                                                              },
+                                                              {
+                                                                "r": "243",
+                                                                "s": [
+                                                                  {
+                                                                    "value": [
+                                                                      "[",
+                                                                      "Observation",
+                                                                      ": "
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "s": [
+                                                                      {
+                                                                        "value": [
+                                                                          "\"Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)\""
+                                                                        ]
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  {
+                                                                    "value": ["]"]
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "value": [")"]
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "value": ["."]
+                                                          },
+                                                          {
+                                                            "r": "251",
+                                                            "s": [
+                                                              {
+                                                                "value": [
+                                                                  "isAssessmentPerformed",
+                                                                  "()"
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "value": [")"]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "value": [" ", "PalliativeAssessment"]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "value": ["\n      "]
+                                          },
+                                          {
+                                            "r": "258",
+                                            "s": [
+                                              {
+                                                "value": ["where "]
+                                              },
+                                              {
+                                                "r": "258",
+                                                "s": [
+                                                  {
+                                                    "r": "256",
+                                                    "s": [
+                                                      {
+                                                        "r": "255",
+                                                        "s": [
+                                                          {
+                                                            "r": "253",
+                                                            "s": [
+                                                              {
+                                                                "value": ["PalliativeAssessment"]
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "value": ["."]
+                                                          },
+                                                          {
+                                                            "r": "255",
+                                                            "s": [
+                                                              {
+                                                                "value": ["effective"]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "value": ["."]
+                                                      },
+                                                      {
+                                                        "r": "256",
+                                                        "s": [
+                                                          {
+                                                            "value": ["toInterval", "()"]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "r": "258",
+                                                    "value": [" ", "overlaps day of", " "]
+                                                  },
+                                                  {
+                                                    "r": "257",
+                                                    "s": [
+                                                      {
+                                                        "value": ["\"Measurement Period\""]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": ["\n  )"]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": ["\n    or "]
+                              },
+                              {
+                                "r": "260",
+                                "s": [
+                                  {
+                                    "value": ["exists "]
+                                  },
+                                  {
+                                    "r": "272",
+                                    "s": [
+                                      {
+                                        "value": ["("]
+                                      },
+                                      {
+                                        "r": "272",
+                                        "s": [
+                                          {
+                                            "s": [
+                                              {
+                                                "r": "261",
+                                                "s": [
+                                                  {
+                                                    "r": "264",
+                                                    "s": [
+                                                      {
+                                                        "r": "264",
+                                                        "s": [
+                                                          {
+                                                            "value": ["[", "Condition", ": "]
+                                                          },
+                                                          {
+                                                            "s": [
+                                                              {
+                                                                "value": [
+                                                                  "\"Palliative Care Diagnosis\""
+                                                                ]
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "value": ["]"]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "value": [" ", "PalliativeDiagnosis"]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "value": ["\n        "]
+                                          },
+                                          {
+                                            "r": "271",
+                                            "s": [
+                                              {
+                                                "value": ["where "]
+                                              },
+                                              {
+                                                "r": "271",
+                                                "s": [
+                                                  {
+                                                    "r": "269",
+                                                    "s": [
+                                                      {
+                                                        "r": "268",
+                                                        "s": [
+                                                          {
+                                                            "value": ["PalliativeDiagnosis"]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "value": ["."]
+                                                      },
+                                                      {
+                                                        "r": "269",
+                                                        "s": [
+                                                          {
+                                                            "value": ["prevalenceInterval", "()"]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "r": "271",
+                                                    "value": [" ", "overlaps day of", " "]
+                                                  },
+                                                  {
+                                                    "r": "270",
+                                                    "s": [
+                                                      {
+                                                        "value": ["\"Measurement Period\""]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": ["\n    )"]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "value": ["\n    or "]
+                          },
+                          {
+                            "r": "275",
+                            "s": [
+                              {
+                                "value": ["exists "]
+                              },
+                              {
+                                "r": "300",
+                                "s": [
+                                  {
+                                    "value": ["("]
+                                  },
+                                  {
+                                    "r": "300",
+                                    "s": [
+                                      {
+                                        "s": [
+                                          {
+                                            "r": "276",
+                                            "s": [
+                                              {
+                                                "r": "283",
+                                                "s": [
+                                                  {
+                                                    "value": ["("]
+                                                  },
+                                                  {
+                                                    "r": "283",
+                                                    "s": [
+                                                      {
+                                                        "r": "279",
+                                                        "s": [
+                                                          {
+                                                            "value": ["("]
+                                                          },
+                                                          {
+                                                            "r": "279",
+                                                            "s": [
+                                                              {
+                                                                "value": ["[", "Encounter", ": "]
+                                                              },
+                                                              {
+                                                                "s": [
+                                                                  {
+                                                                    "value": [
+                                                                      "\"Palliative Care Encounter\""
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "value": ["]"]
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "value": [")"]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "value": ["."]
+                                                      },
+                                                      {
+                                                        "r": "283",
+                                                        "s": [
+                                                          {
+                                                            "value": ["isEncounterPerformed", "()"]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "value": [")"]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "value": [" ", "PalliativeEncounter"]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": ["\n        "]
+                                      },
+                                      {
+                                        "r": "299",
+                                        "s": [
+                                          {
+                                            "value": ["where "]
+                                          },
+                                          {
+                                            "r": "299",
+                                            "s": [
+                                              {
+                                                "r": "288",
+                                                "s": [
+                                                  {
+                                                    "r": "287",
+                                                    "s": [
+                                                      {
+                                                        "r": "285",
+                                                        "s": [
+                                                          {
+                                                            "value": ["PalliativeEncounter"]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "value": ["."]
+                                                      },
+                                                      {
+                                                        "r": "287",
+                                                        "s": [
+                                                          {
+                                                            "value": ["period"]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "value": ["."]
+                                                  },
+                                                  {
+                                                    "r": "288",
+                                                    "s": [
+                                                      {
+                                                        "value": ["toInterval", "()"]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "r": "299",
+                                                "value": [" ", "overlaps day of", " "]
+                                              },
+                                              {
+                                                "r": "298",
+                                                "s": [
+                                                  {
+                                                    "value": ["\"Measurement Period\""]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "value": ["\n    )"]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "value": ["\n    or "]
+                      },
+                      {
+                        "r": "303",
+                        "s": [
+                          {
+                            "value": ["exists "]
+                          },
+                          {
+                            "r": "318",
+                            "s": [
+                              {
+                                "value": ["("]
+                              },
+                              {
+                                "r": "318",
+                                "s": [
+                                  {
+                                    "s": [
+                                      {
+                                        "r": "304",
+                                        "s": [
+                                          {
+                                            "r": "310",
+                                            "s": [
+                                              {
+                                                "value": ["("]
+                                              },
+                                              {
+                                                "r": "310",
+                                                "s": [
+                                                  {
+                                                    "r": "307",
+                                                    "s": [
+                                                      {
+                                                        "value": ["("]
+                                                      },
+                                                      {
+                                                        "r": "307",
+                                                        "s": [
+                                                          {
+                                                            "value": ["[", "Procedure", ": "]
+                                                          },
+                                                          {
+                                                            "s": [
+                                                              {
+                                                                "value": [
+                                                                  "\"Palliative Care Intervention\""
+                                                                ]
+                                                              }
+                                                            ]
+                                                          },
+                                                          {
+                                                            "value": ["]"]
+                                                          }
+                                                        ]
+                                                      },
+                                                      {
+                                                        "value": [")"]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "value": ["."]
+                                                  },
+                                                  {
+                                                    "r": "310",
+                                                    "s": [
+                                                      {
+                                                        "value": ["isInterventionPerformed", "()"]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "value": [")"]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "value": [" ", "PalliativeIntervention"]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "value": ["\n        "]
+                                  },
+                                  {
+                                    "r": "317",
+                                    "s": [
+                                      {
+                                        "value": ["where "]
+                                      },
+                                      {
+                                        "r": "317",
+                                        "s": [
+                                          {
+                                            "r": "315",
+                                            "s": [
+                                              {
+                                                "r": "314",
+                                                "s": [
+                                                  {
+                                                    "r": "312",
+                                                    "s": [
+                                                      {
+                                                        "value": ["PalliativeIntervention"]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "value": ["."]
+                                                  },
+                                                  {
+                                                    "r": "314",
+                                                    "s": [
+                                                      {
+                                                        "value": ["performed"]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "value": ["."]
+                                              },
+                                              {
+                                                "r": "315",
+                                                "s": [
+                                                  {
+                                                    "value": ["toInterval", "()"]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "r": "317",
+                                            "value": [" ", "overlaps day of", " "]
+                                          },
+                                          {
+                                            "r": "316",
+                                            "s": [
+                                              {
+                                                "value": ["\"Measurement Period\""]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": ["\n    )"]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "expression": {
+            "localId": "236",
+            "locator": "22:3-33:5",
+            "type": "Or",
+            "signature": [],
+            "operand": [
+              {
+                "localId": "237",
+                "locator": "22:3-30:5",
+                "type": "Or",
+                "signature": [],
+                "operand": [
+                  {
+                    "localId": "238",
+                    "locator": "22:3-27:5",
+                    "type": "Or",
+                    "signature": [],
+                    "operand": [
+                      {
+                        "localId": "239",
+                        "locator": "22:3-24:3",
+                        "type": "Exists",
+                        "signature": [],
+                        "operand": {
+                          "localId": "259",
+                          "locator": "22:10-24:3",
+                          "type": "Query",
+                          "source": [
+                            {
+                              "localId": "240",
+                              "locator": "22:11-22:168",
+                              "alias": "PalliativeAssessment",
+                              "expression": {
+                                "localId": "251",
+                                "locator": "22:11-22:147",
+                                "name": "isAssessmentPerformed",
+                                "libraryName": "Status",
+                                "type": "FunctionRef",
+                                "signature": [],
+                                "operand": [
+                                  {
+                                    "localId": "243",
+                                    "locator": "22:12-22:122",
+                                    "dataType": "{http://hl7.org/fhir}Observation",
+                                    "templateId": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-observation",
+                                    "codeProperty": "code",
+                                    "codeComparator": "~",
+                                    "type": "Retrieve",
+                                    "codes": {
+                                      "localId": "250",
+                                      "type": "ToList",
+                                      "signature": [],
+                                      "operand": {
+                                        "localId": "242",
+                                        "locator": "22:27-22:120",
+                                        "name": "Functional Assessment of Chronic Illness Therapy - Palliative Care Questionnaire (FACIT-Pal)",
+                                        "type": "CodeRef"
+                                      }
+                                    },
+                                    "include": [],
+                                    "codeFilter": [],
+                                    "dateFilter": [],
+                                    "otherFilter": []
+                                  }
+                                ]
+                              }
+                            }
+                          ],
+                          "let": [],
+                          "relationship": [],
+                          "where": {
+                            "localId": "258",
+                            "locator": "23:7-23:92",
+                            "precision": "Day",
+                            "type": "Overlaps",
+                            "signature": [],
+                            "operand": [
+                              {
+                                "localId": "256",
+                                "locator": "23:13-23:55",
+                                "name": "toInterval",
+                                "libraryName": "QICoreCommon",
+                                "type": "FunctionRef",
+                                "signature": [],
+                                "operand": [
+                                  {
+                                    "localId": "255",
+                                    "locator": "23:13-23:42",
+                                    "name": "ToValue",
+                                    "libraryName": "FHIRHelpers",
+                                    "type": "FunctionRef",
+                                    "signature": [],
+                                    "operand": [
+                                      {
+                                        "localId": "254",
+                                        "path": "effective",
+                                        "scope": "PalliativeAssessment",
+                                        "type": "Property"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "localId": "257",
+                                "locator": "23:73-23:92",
+                                "name": "Measurement Period",
+                                "type": "ParameterRef"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "localId": "260",
+                        "locator": "25:8-27:5",
+                        "type": "Exists",
+                        "signature": [
+                          {
+                            "localId": "273",
+                            "type": "ListTypeSpecifier",
+                            "elementType": {
+                              "localId": "274",
+                              "name": "{http://hl7.org/fhir}Condition",
+                              "type": "NamedTypeSpecifier"
+                            }
+                          }
+                        ],
+                        "operand": {
+                          "localId": "272",
+                          "locator": "25:15-27:5",
+                          "type": "Query",
+                          "source": [
+                            {
+                              "localId": "261",
+                              "locator": "25:16-25:75",
+                              "alias": "PalliativeDiagnosis",
+                              "expression": {
+                                "localId": "264",
+                                "locator": "25:16-25:55",
+                                "dataType": "{http://hl7.org/fhir}Condition",
+                                "templateId": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-condition",
+                                "codeProperty": "code",
+                                "codeComparator": "in",
+                                "type": "Retrieve",
+                                "codes": {
+                                  "localId": "263",
+                                  "locator": "25:28-25:54",
+                                  "name": "Palliative Care Diagnosis",
+                                  "preserve": true,
+                                  "type": "ValueSetRef"
+                                },
+                                "include": [],
+                                "codeFilter": [],
+                                "dateFilter": [],
+                                "otherFilter": []
+                              }
+                            }
+                          ],
+                          "let": [],
+                          "relationship": [],
+                          "where": {
+                            "localId": "271",
+                            "locator": "26:9-26:91",
+                            "precision": "Day",
+                            "type": "Overlaps",
+                            "signature": [],
+                            "operand": [
+                              {
+                                "localId": "269",
+                                "locator": "26:15-26:54",
+                                "name": "prevalenceInterval",
+                                "libraryName": "QICoreCommon",
+                                "type": "FunctionRef",
+                                "signature": [],
+                                "operand": [
+                                  {
+                                    "localId": "268",
+                                    "locator": "26:15-26:33",
+                                    "name": "PalliativeDiagnosis",
+                                    "type": "AliasRef"
+                                  }
+                                ]
+                              },
+                              {
+                                "localId": "270",
+                                "locator": "26:72-26:91",
+                                "name": "Measurement Period",
+                                "type": "ParameterRef"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "localId": "275",
+                    "locator": "28:8-30:5",
+                    "type": "Exists",
+                    "signature": [
+                      {
+                        "localId": "301",
+                        "type": "ListTypeSpecifier",
+                        "elementType": {
+                          "localId": "302",
+                          "name": "{http://hl7.org/fhir}Encounter",
+                          "type": "NamedTypeSpecifier"
+                        }
+                      }
+                    ],
+                    "operand": {
+                      "localId": "300",
+                      "locator": "28:15-30:5",
+                      "type": "Query",
+                      "source": [
+                        {
+                          "localId": "276",
+                          "locator": "28:16-28:102",
+                          "alias": "PalliativeEncounter",
+                          "expression": {
+                            "localId": "283",
+                            "locator": "28:16-28:82",
+                            "name": "isEncounterPerformed",
+                            "libraryName": "Status",
+                            "type": "FunctionRef",
+                            "signature": [],
+                            "operand": [
+                              {
+                                "localId": "279",
+                                "locator": "28:17-28:58",
+                                "dataType": "{http://hl7.org/fhir}Encounter",
+                                "templateId": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-encounter",
+                                "codeProperty": "type",
+                                "codeComparator": "in",
+                                "type": "Retrieve",
+                                "codes": {
+                                  "localId": "278",
+                                  "locator": "28:30-28:56",
+                                  "name": "Palliative Care Encounter",
+                                  "preserve": true,
+                                  "type": "ValueSetRef"
+                                },
+                                "include": [],
+                                "codeFilter": [],
+                                "dateFilter": [],
+                                "otherFilter": []
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "let": [],
+                      "relationship": [],
+                      "where": {
+                        "localId": "299",
+                        "locator": "29:9-29:90",
+                        "precision": "Day",
+                        "type": "Overlaps",
+                        "signature": [],
+                        "operand": [
+                          {
+                            "localId": "288",
+                            "locator": "29:15-29:53",
+                            "name": "toInterval",
+                            "libraryName": "QICoreCommon",
+                            "type": "FunctionRef",
+                            "signature": [],
+                            "operand": [
+                              {
+                                "localId": "289",
+                                "type": "As",
+                                "signature": [],
+                                "operand": {
+                                  "localId": "287",
+                                  "locator": "29:15-29:40",
+                                  "name": "ToInterval",
+                                  "libraryName": "FHIRHelpers",
+                                  "type": "FunctionRef",
+                                  "signature": [
+                                    {
+                                      "name": "{http://hl7.org/fhir}Period",
+                                      "type": "NamedTypeSpecifier"
+                                    }
+                                  ],
+                                  "operand": [
+                                    {
+                                      "localId": "286",
+                                      "path": "period",
+                                      "scope": "PalliativeEncounter",
+                                      "type": "Property"
+                                    }
+                                  ]
+                                },
+                                "asTypeSpecifier": {
+                                  "localId": "290",
+                                  "type": "ChoiceTypeSpecifier",
+                                  "choice": [
+                                    {
+                                      "localId": "291",
+                                      "name": "{urn:hl7-org:elm-types:r1}DateTime",
+                                      "type": "NamedTypeSpecifier"
+                                    },
+                                    {
+                                      "localId": "292",
+                                      "name": "{urn:hl7-org:elm-types:r1}Quantity",
+                                      "type": "NamedTypeSpecifier"
+                                    },
+                                    {
+                                      "localId": "293",
+                                      "type": "IntervalTypeSpecifier",
+                                      "pointType": {
+                                        "localId": "294",
+                                        "name": "{urn:hl7-org:elm-types:r1}DateTime",
+                                        "type": "NamedTypeSpecifier"
+                                      }
+                                    },
+                                    {
+                                      "localId": "295",
+                                      "type": "IntervalTypeSpecifier",
+                                      "pointType": {
+                                        "localId": "296",
+                                        "name": "{urn:hl7-org:elm-types:r1}Quantity",
+                                        "type": "NamedTypeSpecifier"
+                                      }
+                                    },
+                                    {
+                                      "localId": "297",
+                                      "name": "{http://hl7.org/fhir}Timing",
+                                      "type": "NamedTypeSpecifier"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "localId": "298",
+                            "locator": "29:71-29:90",
+                            "name": "Measurement Period",
+                            "type": "ParameterRef"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "localId": "303",
+                "locator": "31:8-33:5",
+                "type": "Exists",
+                "signature": [
+                  {
+                    "localId": "319",
+                    "type": "ListTypeSpecifier",
+                    "elementType": {
+                      "localId": "320",
+                      "name": "{http://hl7.org/fhir}Procedure",
+                      "type": "NamedTypeSpecifier"
+                    }
+                  }
+                ],
+                "operand": {
+                  "localId": "318",
+                  "locator": "31:15-33:5",
+                  "type": "Query",
+                  "source": [
+                    {
+                      "localId": "304",
+                      "locator": "31:16-31:111",
+                      "alias": "PalliativeIntervention",
+                      "expression": {
+                        "localId": "310",
+                        "locator": "31:16-31:88",
+                        "name": "isInterventionPerformed",
+                        "libraryName": "Status",
+                        "type": "FunctionRef",
+                        "signature": [],
+                        "operand": [
+                          {
+                            "localId": "307",
+                            "locator": "31:17-31:61",
+                            "dataType": "{http://hl7.org/fhir}Procedure",
+                            "templateId": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-procedure",
+                            "codeProperty": "code",
+                            "codeComparator": "in",
+                            "type": "Retrieve",
+                            "codes": {
+                              "localId": "306",
+                              "locator": "31:30-31:59",
+                              "name": "Palliative Care Intervention",
+                              "preserve": true,
+                              "type": "ValueSetRef"
+                            },
+                            "include": [],
+                            "codeFilter": [],
+                            "dateFilter": [],
+                            "otherFilter": []
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "let": [],
+                  "relationship": [],
+                  "where": {
+                    "localId": "317",
+                    "locator": "32:9-32:96",
+                    "precision": "Day",
+                    "type": "Overlaps",
+                    "signature": [],
+                    "operand": [
+                      {
+                        "localId": "315",
+                        "locator": "32:15-32:59",
+                        "name": "toInterval",
+                        "libraryName": "QICoreCommon",
+                        "type": "FunctionRef",
+                        "signature": [],
+                        "operand": [
+                          {
+                            "localId": "314",
+                            "locator": "32:15-32:46",
+                            "name": "ToValue",
+                            "libraryName": "FHIRHelpers",
+                            "type": "FunctionRef",
+                            "signature": [],
+                            "operand": [
+                              {
+                                "localId": "313",
+                                "path": "performed",
+                                "scope": "PalliativeIntervention",
+                                "type": "Property"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "localId": "316",
+                        "locator": "32:77-32:96",
+                        "name": "Measurement Period",
+                        "type": "ParameterRef"
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

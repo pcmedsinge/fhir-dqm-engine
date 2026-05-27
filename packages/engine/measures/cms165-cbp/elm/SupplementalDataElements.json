@@ -1,0 +1,1987 @@
+{
+  "library": {
+    "localId": "0",
+    "annotation": [
+      {
+        "translatorVersion": "3.25.0",
+        "translatorOptions": "EnableAnnotations,EnableLocators,DisableListDemotion,DisableListPromotion",
+        "signatureLevel": "Overloads",
+        "type": "CqlToElmInfo"
+      },
+      {
+        "type": "Annotation",
+        "t": [
+          {
+            "name": "update",
+            "value": "JSR 2024-04-04 ->\nUpdated FHIRHelpers version to 4.4.000.\nAdded Male and Female codes and related AdministrativeGender code system\nUpdated SDE Sex definition to use added codes from FHIR administrative-gender code system."
+          }
+        ],
+        "s": {
+          "r": "395",
+          "s": [
+            {
+              "value": [
+                "/*\n@update: JSR 2024-04-04 ->\nUpdated FHIRHelpers version to 4.4.000.\nAdded Male and Female codes and related AdministrativeGender code system\nUpdated SDE Sex definition to use added codes from FHIR administrative-gender code system.\n*/\n",
+                "library SupplementalDataElements version '3.5.000'"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "identifier": {
+      "id": "SupplementalDataElements",
+      "system": "http://ecqi.healthit.gov/ecqms",
+      "version": "3.5.000"
+    },
+    "schemaIdentifier": {
+      "id": "urn:hl7-org:elm",
+      "version": "r1"
+    },
+    "usings": {
+      "def": [
+        {
+          "localId": "1",
+          "localIdentifier": "System",
+          "uri": "urn:hl7-org:elm-types:r1"
+        },
+        {
+          "localId": "206",
+          "locator": "9:1-9:28",
+          "localIdentifier": "QICore",
+          "uri": "http://hl7.org/fhir",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "206",
+                "s": [
+                  {
+                    "value": ["", "using "]
+                  },
+                  {
+                    "s": [
+                      {
+                        "value": ["QICore"]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [" version '4.1.1'"]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "includes": {
+      "def": [
+        {
+          "localId": "208",
+          "locator": "11:1-11:56",
+          "localIdentifier": "FHIRHelpers",
+          "path": "http://ecqi.healthit.gov/ecqms/FHIRHelpers",
+          "version": "4.4.000",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "208",
+                "s": [
+                  {
+                    "value": ["", "include "]
+                  },
+                  {
+                    "s": [
+                      {
+                        "value": ["FHIRHelpers"]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [" version ", "'4.4.000'", " called ", "FHIRHelpers"]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "codeSystems": {
+      "def": [
+        {
+          "localId": "210",
+          "locator": "13:1-13:78",
+          "name": "AdministrativeGender",
+          "id": "http://hl7.org/fhir/administrative-gender",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "210",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "codesystem ",
+                      "\"AdministrativeGender\"",
+                      ": ",
+                      "'http://hl7.org/fhir/administrative-gender'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "valueSets": {
+      "def": [
+        {
+          "localId": "212",
+          "locator": "15:1-15:87",
+          "name": "Ethnicity",
+          "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "212",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "valueset ",
+                      "\"Ethnicity\"",
+                      ": ",
+                      "'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.837'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": []
+        },
+        {
+          "localId": "214",
+          "locator": "16:1-16:97",
+          "name": "ONC Administrative Sex",
+          "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "214",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "valueset ",
+                      "\"ONC Administrative Sex\"",
+                      ": ",
+                      "'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113762.1.4.1'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": []
+        },
+        {
+          "localId": "216",
+          "locator": "17:1-17:89",
+          "name": "Payer Type",
+          "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "216",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "valueset ",
+                      "\"Payer Type\"",
+                      ": ",
+                      "'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.3591'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": []
+        },
+        {
+          "localId": "218",
+          "locator": "18:1-18:82",
+          "name": "Race",
+          "id": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "218",
+                "s": [
+                  {
+                    "value": [
+                      "",
+                      "valueset ",
+                      "\"Race\"",
+                      ": ",
+                      "'http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.114222.4.11.836'"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": []
+        }
+      ]
+    },
+    "codes": {
+      "def": [
+        {
+          "localId": "220",
+          "locator": "20:1-20:56",
+          "name": "M",
+          "id": "M",
+          "display": "Male",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "220",
+                "s": [
+                  {
+                    "value": ["", "code ", "\"M\"", ": ", "'M'", " from "]
+                  },
+                  {
+                    "r": "221",
+                    "s": [
+                      {
+                        "value": ["\"AdministrativeGender\""]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [" display ", "'Male'"]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": {
+            "localId": "221",
+            "locator": "20:20-20:41",
+            "name": "AdministrativeGender"
+          }
+        },
+        {
+          "localId": "223",
+          "locator": "21:1-21:58",
+          "name": "F",
+          "id": "F",
+          "display": "Female",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "223",
+                "s": [
+                  {
+                    "value": ["", "code ", "\"F\"", ": ", "'F'", " from "]
+                  },
+                  {
+                    "r": "224",
+                    "s": [
+                      {
+                        "value": ["\"AdministrativeGender\""]
+                      }
+                    ]
+                  },
+                  {
+                    "value": [" display ", "'Female'"]
+                  }
+                ]
+              }
+            }
+          ],
+          "codeSystem": {
+            "localId": "224",
+            "locator": "21:20-21:41",
+            "name": "AdministrativeGender"
+          }
+        }
+      ]
+    },
+    "contexts": {
+      "def": [
+        {
+          "localId": "229",
+          "locator": "23:1-23:15",
+          "name": "Patient"
+        }
+      ]
+    },
+    "statements": {
+      "def": [
+        {
+          "localId": "227",
+          "locator": "23:1-23:15",
+          "name": "Patient",
+          "context": "Patient",
+          "expression": {
+            "localId": "228",
+            "type": "SingletonFrom",
+            "signature": [],
+            "operand": {
+              "localId": "226",
+              "locator": "23:1-23:15",
+              "dataType": "{http://hl7.org/fhir}Patient",
+              "templateId": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-patient",
+              "type": "Retrieve",
+              "include": [],
+              "codeFilter": [],
+              "dateFilter": [],
+              "otherFilter": []
+            }
+          }
+        },
+        {
+          "localId": "232",
+          "locator": "25:1-30:5",
+          "name": "SDE Ethnicity",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "232",
+                "s": [
+                  {
+                    "value": ["", "define ", "\"SDE Ethnicity\"", ":\n  "]
+                  },
+                  {
+                    "r": "300",
+                    "s": [
+                      {
+                        "s": [
+                          {
+                            "r": "233",
+                            "s": [
+                              {
+                                "r": "244",
+                                "s": [
+                                  {
+                                    "s": [
+                                      {
+                                        "value": ["Patient", ".", "ethnicity"]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": [" ", "E"]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "value": ["\n    "]
+                      },
+                      {
+                        "r": "246",
+                        "s": [
+                          {
+                            "value": ["return "]
+                          },
+                          {
+                            "r": "247",
+                            "s": [
+                              {
+                                "value": ["Tuple {\n      "]
+                              },
+                              {
+                                "s": [
+                                  {
+                                    "value": ["codes", ": "]
+                                  },
+                                  {
+                                    "r": "284",
+                                    "s": [
+                                      {
+                                        "r": "248",
+                                        "s": [
+                                          {
+                                            "value": ["{ "]
+                                          },
+                                          {
+                                            "r": "264",
+                                            "s": [
+                                              {
+                                                "r": "249",
+                                                "s": [
+                                                  {
+                                                    "value": ["E"]
+                                                  }
+                                                ]
+                                              },
+                                              {
+                                                "value": ["."]
+                                              },
+                                              {
+                                                "r": "264",
+                                                "s": [
+                                                  {
+                                                    "value": ["ombCategory"]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "value": [" }"]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": [" union "]
+                                      },
+                                      {
+                                        "r": "279",
+                                        "s": [
+                                          {
+                                            "r": "265",
+                                            "s": [
+                                              {
+                                                "value": ["E"]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "value": ["."]
+                                          },
+                                          {
+                                            "r": "279",
+                                            "s": [
+                                              {
+                                                "value": ["detailed"]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": [",\n      "]
+                              },
+                              {
+                                "s": [
+                                  {
+                                    "value": ["display", ": "]
+                                  },
+                                  {
+                                    "r": "299",
+                                    "s": [
+                                      {
+                                        "r": "285",
+                                        "s": [
+                                          {
+                                            "value": ["E"]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": ["."]
+                                      },
+                                      {
+                                        "r": "299",
+                                        "s": [
+                                          {
+                                            "value": ["text"]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": ["\n    }"]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "expression": {
+            "localId": "300",
+            "locator": "26:3-30:5",
+            "type": "Query",
+            "source": [
+              {
+                "localId": "233",
+                "locator": "26:3-26:21",
+                "alias": "E",
+                "expression": {
+                  "localId": "244",
+                  "locator": "26:3-26:19",
+                  "type": "SingletonFrom",
+                  "signature": [],
+                  "operand": {
+                    "localId": "243",
+                    "type": "Query",
+                    "source": [
+                      {
+                        "localId": "237",
+                        "alias": "$this",
+                        "expression": {
+                          "localId": "236",
+                          "path": "extension",
+                          "type": "Property",
+                          "source": {
+                            "localId": "234",
+                            "name": "Patient",
+                            "type": "ExpressionRef"
+                          }
+                        }
+                      }
+                    ],
+                    "let": [],
+                    "relationship": [],
+                    "where": {
+                      "localId": "242",
+                      "type": "Equal",
+                      "signature": [],
+                      "operand": [
+                        {
+                          "localId": "239",
+                          "name": "ToString",
+                          "libraryName": "FHIRHelpers",
+                          "type": "FunctionRef",
+                          "signature": [
+                            {
+                              "localId": "240",
+                              "name": "{http://hl7.org/fhir}uri",
+                              "type": "NamedTypeSpecifier"
+                            }
+                          ],
+                          "operand": [
+                            {
+                              "localId": "238",
+                              "path": "url",
+                              "scope": "$this",
+                              "type": "Property"
+                            }
+                          ]
+                        },
+                        {
+                          "localId": "241",
+                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                          "value": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+                          "type": "Literal"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "let": [],
+            "relationship": [],
+            "return": {
+              "localId": "246",
+              "locator": "27:5-30:5",
+              "expression": {
+                "localId": "247",
+                "locator": "27:12-30:5",
+                "type": "Tuple",
+                "element": [
+                  {
+                    "name": "codes",
+                    "value": {
+                      "localId": "284",
+                      "locator": "28:14-28:47",
+                      "type": "Union",
+                      "signature": [],
+                      "operand": [
+                        {
+                          "localId": "248",
+                          "locator": "28:14-28:30",
+                          "type": "List",
+                          "element": [
+                            {
+                              "localId": "264",
+                              "locator": "28:16-28:28",
+                              "name": "ToCode",
+                              "libraryName": "FHIRHelpers",
+                              "type": "FunctionRef",
+                              "signature": [],
+                              "operand": [
+                                {
+                                  "localId": "263",
+                                  "type": "SingletonFrom",
+                                  "signature": [],
+                                  "operand": {
+                                    "localId": "259",
+                                    "type": "Query",
+                                    "source": [
+                                      {
+                                        "localId": "253",
+                                        "alias": "$this",
+                                        "expression": {
+                                          "localId": "252",
+                                          "path": "extension",
+                                          "type": "Property",
+                                          "source": {
+                                            "localId": "251",
+                                            "name": "E",
+                                            "type": "AliasRef"
+                                          }
+                                        }
+                                      }
+                                    ],
+                                    "let": [],
+                                    "relationship": [],
+                                    "where": {
+                                      "localId": "258",
+                                      "type": "Equal",
+                                      "signature": [],
+                                      "operand": [
+                                        {
+                                          "localId": "255",
+                                          "name": "ToString",
+                                          "libraryName": "FHIRHelpers",
+                                          "type": "FunctionRef",
+                                          "signature": [
+                                            {
+                                              "localId": "256",
+                                              "name": "{http://hl7.org/fhir}uri",
+                                              "type": "NamedTypeSpecifier"
+                                            }
+                                          ],
+                                          "operand": [
+                                            {
+                                              "localId": "254",
+                                              "path": "url",
+                                              "scope": "$this",
+                                              "type": "Property"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "localId": "257",
+                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                          "value": "ombCategory",
+                                          "type": "Literal"
+                                        }
+                                      ]
+                                    },
+                                    "return": {
+                                      "localId": "260",
+                                      "distinct": false,
+                                      "expression": {
+                                        "localId": "261",
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                          "localId": "262",
+                                          "name": "$this",
+                                          "type": "AliasRef"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "localId": "279",
+                          "locator": "28:38-28:47",
+                          "type": "Query",
+                          "source": [
+                            {
+                              "localId": "280",
+                              "alias": "$this",
+                              "expression": {
+                                "localId": "275",
+                                "type": "Query",
+                                "source": [
+                                  {
+                                    "localId": "269",
+                                    "alias": "$this",
+                                    "expression": {
+                                      "localId": "268",
+                                      "path": "extension",
+                                      "type": "Property",
+                                      "source": {
+                                        "localId": "267",
+                                        "name": "E",
+                                        "type": "AliasRef"
+                                      }
+                                    }
+                                  }
+                                ],
+                                "let": [],
+                                "relationship": [],
+                                "where": {
+                                  "localId": "274",
+                                  "type": "Equal",
+                                  "signature": [],
+                                  "operand": [
+                                    {
+                                      "localId": "271",
+                                      "name": "ToString",
+                                      "libraryName": "FHIRHelpers",
+                                      "type": "FunctionRef",
+                                      "signature": [
+                                        {
+                                          "localId": "272",
+                                          "name": "{http://hl7.org/fhir}uri",
+                                          "type": "NamedTypeSpecifier"
+                                        }
+                                      ],
+                                      "operand": [
+                                        {
+                                          "localId": "270",
+                                          "path": "url",
+                                          "scope": "$this",
+                                          "type": "Property"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "localId": "273",
+                                      "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                      "value": "detailed",
+                                      "type": "Literal"
+                                    }
+                                  ]
+                                },
+                                "return": {
+                                  "localId": "276",
+                                  "distinct": false,
+                                  "expression": {
+                                    "localId": "277",
+                                    "path": "value",
+                                    "type": "Property",
+                                    "source": {
+                                      "localId": "278",
+                                      "name": "$this",
+                                      "type": "AliasRef"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "let": [],
+                          "relationship": [],
+                          "return": {
+                            "localId": "283",
+                            "distinct": false,
+                            "expression": {
+                              "localId": "281",
+                              "name": "ToCode",
+                              "libraryName": "FHIRHelpers",
+                              "type": "FunctionRef",
+                              "signature": [],
+                              "operand": [
+                                {
+                                  "localId": "282",
+                                  "name": "$this",
+                                  "type": "AliasRef"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "display",
+                    "value": {
+                      "localId": "299",
+                      "locator": "29:16-29:21",
+                      "type": "SingletonFrom",
+                      "signature": [],
+                      "operand": {
+                        "localId": "295",
+                        "type": "Query",
+                        "source": [
+                          {
+                            "localId": "289",
+                            "alias": "$this",
+                            "expression": {
+                              "localId": "288",
+                              "path": "extension",
+                              "type": "Property",
+                              "source": {
+                                "localId": "287",
+                                "name": "E",
+                                "type": "AliasRef"
+                              }
+                            }
+                          }
+                        ],
+                        "let": [],
+                        "relationship": [],
+                        "where": {
+                          "localId": "294",
+                          "type": "Equal",
+                          "signature": [],
+                          "operand": [
+                            {
+                              "localId": "291",
+                              "name": "ToString",
+                              "libraryName": "FHIRHelpers",
+                              "type": "FunctionRef",
+                              "signature": [
+                                {
+                                  "localId": "292",
+                                  "name": "{http://hl7.org/fhir}uri",
+                                  "type": "NamedTypeSpecifier"
+                                }
+                              ],
+                              "operand": [
+                                {
+                                  "localId": "290",
+                                  "path": "url",
+                                  "scope": "$this",
+                                  "type": "Property"
+                                }
+                              ]
+                            },
+                            {
+                              "localId": "293",
+                              "valueType": "{urn:hl7-org:elm-types:r1}String",
+                              "value": "text",
+                              "type": "Literal"
+                            }
+                          ]
+                        },
+                        "return": {
+                          "localId": "296",
+                          "distinct": false,
+                          "expression": {
+                            "localId": "297",
+                            "path": "value.value",
+                            "type": "Property",
+                            "source": {
+                              "localId": "298",
+                              "name": "$this",
+                              "type": "AliasRef"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "localId": "303",
+          "locator": "32:1-37:5",
+          "name": "SDE Payer",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "303",
+                "s": [
+                  {
+                    "value": ["", "define ", "\"SDE Payer\"", ":\n  "]
+                  },
+                  {
+                    "r": "319",
+                    "s": [
+                      {
+                        "s": [
+                          {
+                            "r": "304",
+                            "s": [
+                              {
+                                "r": "307",
+                                "s": [
+                                  {
+                                    "r": "307",
+                                    "s": [
+                                      {
+                                        "value": ["[", "Coverage", ": "]
+                                      },
+                                      {
+                                        "s": [
+                                          {
+                                            "value": ["type"]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": [" ", "in", " "]
+                                      },
+                                      {
+                                        "s": [
+                                          {
+                                            "value": ["\"Payer Type\""]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": ["]"]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": [" ", "Payer"]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "value": ["\n    "]
+                      },
+                      {
+                        "r": "311",
+                        "s": [
+                          {
+                            "value": ["return "]
+                          },
+                          {
+                            "r": "312",
+                            "s": [
+                              {
+                                "value": ["{\n      "]
+                              },
+                              {
+                                "s": [
+                                  {
+                                    "value": ["code", ": "]
+                                  },
+                                  {
+                                    "r": "315",
+                                    "s": [
+                                      {
+                                        "r": "313",
+                                        "s": [
+                                          {
+                                            "value": ["Payer"]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": ["."]
+                                      },
+                                      {
+                                        "r": "315",
+                                        "s": [
+                                          {
+                                            "value": ["type"]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": [",\n      "]
+                              },
+                              {
+                                "s": [
+                                  {
+                                    "value": ["period", ": "]
+                                  },
+                                  {
+                                    "r": "318",
+                                    "s": [
+                                      {
+                                        "r": "316",
+                                        "s": [
+                                          {
+                                            "value": ["Payer"]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": ["."]
+                                      },
+                                      {
+                                        "r": "318",
+                                        "s": [
+                                          {
+                                            "value": ["period"]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": ["\n    }"]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "expression": {
+            "localId": "319",
+            "locator": "33:3-37:5",
+            "type": "Query",
+            "source": [
+              {
+                "localId": "304",
+                "locator": "33:3-33:40",
+                "alias": "Payer",
+                "expression": {
+                  "localId": "307",
+                  "locator": "33:3-33:34",
+                  "dataType": "{http://hl7.org/fhir}Coverage",
+                  "templateId": "http://hl7.org/fhir/us/qicore/StructureDefinition/qicore-coverage",
+                  "codeProperty": "type",
+                  "codeComparator": "in",
+                  "type": "Retrieve",
+                  "codes": {
+                    "localId": "306",
+                    "locator": "33:22-33:33",
+                    "name": "Payer Type",
+                    "preserve": true,
+                    "type": "ValueSetRef"
+                  },
+                  "include": [],
+                  "codeFilter": [],
+                  "dateFilter": [],
+                  "otherFilter": []
+                }
+              }
+            ],
+            "let": [],
+            "relationship": [],
+            "return": {
+              "localId": "311",
+              "locator": "34:5-37:5",
+              "expression": {
+                "localId": "312",
+                "locator": "34:12-37:5",
+                "type": "Tuple",
+                "element": [
+                  {
+                    "name": "code",
+                    "value": {
+                      "localId": "315",
+                      "locator": "35:13-35:22",
+                      "name": "ToConcept",
+                      "libraryName": "FHIRHelpers",
+                      "type": "FunctionRef",
+                      "signature": [],
+                      "operand": [
+                        {
+                          "localId": "314",
+                          "path": "type",
+                          "scope": "Payer",
+                          "type": "Property"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "period",
+                    "value": {
+                      "localId": "318",
+                      "locator": "36:15-36:26",
+                      "name": "ToInterval",
+                      "libraryName": "FHIRHelpers",
+                      "type": "FunctionRef",
+                      "signature": [
+                        {
+                          "name": "{http://hl7.org/fhir}Period",
+                          "type": "NamedTypeSpecifier"
+                        }
+                      ],
+                      "operand": [
+                        {
+                          "localId": "317",
+                          "path": "period",
+                          "scope": "Payer",
+                          "type": "Property"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "localId": "322",
+          "locator": "39:1-44:5",
+          "name": "SDE Race",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "322",
+                "s": [
+                  {
+                    "value": ["", "define ", "\"SDE Race\"", ":\n  "]
+                  },
+                  {
+                    "r": "392",
+                    "s": [
+                      {
+                        "s": [
+                          {
+                            "r": "323",
+                            "s": [
+                              {
+                                "r": "334",
+                                "s": [
+                                  {
+                                    "s": [
+                                      {
+                                        "value": ["Patient", ".", "race"]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": [" ", "R"]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "value": ["\n    "]
+                      },
+                      {
+                        "r": "336",
+                        "s": [
+                          {
+                            "value": ["return "]
+                          },
+                          {
+                            "r": "337",
+                            "s": [
+                              {
+                                "value": ["Tuple {\n      "]
+                              },
+                              {
+                                "s": [
+                                  {
+                                    "value": ["codes", ": "]
+                                  },
+                                  {
+                                    "r": "376",
+                                    "s": [
+                                      {
+                                        "r": "352",
+                                        "s": [
+                                          {
+                                            "r": "338",
+                                            "s": [
+                                              {
+                                                "value": ["R"]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "value": ["."]
+                                          },
+                                          {
+                                            "r": "352",
+                                            "s": [
+                                              {
+                                                "value": ["ombCategory"]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": [" union "]
+                                      },
+                                      {
+                                        "r": "371",
+                                        "s": [
+                                          {
+                                            "r": "357",
+                                            "s": [
+                                              {
+                                                "value": ["R"]
+                                              }
+                                            ]
+                                          },
+                                          {
+                                            "value": ["."]
+                                          },
+                                          {
+                                            "r": "371",
+                                            "s": [
+                                              {
+                                                "value": ["detailed"]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": [",\n      "]
+                              },
+                              {
+                                "s": [
+                                  {
+                                    "value": ["display", ": "]
+                                  },
+                                  {
+                                    "r": "391",
+                                    "s": [
+                                      {
+                                        "r": "377",
+                                        "s": [
+                                          {
+                                            "value": ["R"]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "value": ["."]
+                                      },
+                                      {
+                                        "r": "391",
+                                        "s": [
+                                          {
+                                            "value": ["text"]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": ["\n    }"]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "expression": {
+            "localId": "392",
+            "locator": "40:3-44:5",
+            "type": "Query",
+            "source": [
+              {
+                "localId": "323",
+                "locator": "40:3-40:16",
+                "alias": "R",
+                "expression": {
+                  "localId": "334",
+                  "locator": "40:3-40:14",
+                  "type": "SingletonFrom",
+                  "signature": [],
+                  "operand": {
+                    "localId": "333",
+                    "type": "Query",
+                    "source": [
+                      {
+                        "localId": "327",
+                        "alias": "$this",
+                        "expression": {
+                          "localId": "326",
+                          "path": "extension",
+                          "type": "Property",
+                          "source": {
+                            "localId": "324",
+                            "name": "Patient",
+                            "type": "ExpressionRef"
+                          }
+                        }
+                      }
+                    ],
+                    "let": [],
+                    "relationship": [],
+                    "where": {
+                      "localId": "332",
+                      "type": "Equal",
+                      "signature": [],
+                      "operand": [
+                        {
+                          "localId": "329",
+                          "name": "ToString",
+                          "libraryName": "FHIRHelpers",
+                          "type": "FunctionRef",
+                          "signature": [
+                            {
+                              "localId": "330",
+                              "name": "{http://hl7.org/fhir}uri",
+                              "type": "NamedTypeSpecifier"
+                            }
+                          ],
+                          "operand": [
+                            {
+                              "localId": "328",
+                              "path": "url",
+                              "scope": "$this",
+                              "type": "Property"
+                            }
+                          ]
+                        },
+                        {
+                          "localId": "331",
+                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                          "value": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+                          "type": "Literal"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ],
+            "let": [],
+            "relationship": [],
+            "return": {
+              "localId": "336",
+              "locator": "41:5-44:5",
+              "expression": {
+                "localId": "337",
+                "locator": "41:12-44:5",
+                "type": "Tuple",
+                "element": [
+                  {
+                    "name": "codes",
+                    "value": {
+                      "localId": "376",
+                      "locator": "42:14-42:43",
+                      "type": "Union",
+                      "signature": [],
+                      "operand": [
+                        {
+                          "localId": "352",
+                          "locator": "42:14-42:26",
+                          "type": "Query",
+                          "source": [
+                            {
+                              "localId": "353",
+                              "alias": "$this",
+                              "expression": {
+                                "localId": "348",
+                                "type": "Query",
+                                "source": [
+                                  {
+                                    "localId": "342",
+                                    "alias": "$this",
+                                    "expression": {
+                                      "localId": "341",
+                                      "path": "extension",
+                                      "type": "Property",
+                                      "source": {
+                                        "localId": "340",
+                                        "name": "R",
+                                        "type": "AliasRef"
+                                      }
+                                    }
+                                  }
+                                ],
+                                "let": [],
+                                "relationship": [],
+                                "where": {
+                                  "localId": "347",
+                                  "type": "Equal",
+                                  "signature": [],
+                                  "operand": [
+                                    {
+                                      "localId": "344",
+                                      "name": "ToString",
+                                      "libraryName": "FHIRHelpers",
+                                      "type": "FunctionRef",
+                                      "signature": [
+                                        {
+                                          "localId": "345",
+                                          "name": "{http://hl7.org/fhir}uri",
+                                          "type": "NamedTypeSpecifier"
+                                        }
+                                      ],
+                                      "operand": [
+                                        {
+                                          "localId": "343",
+                                          "path": "url",
+                                          "scope": "$this",
+                                          "type": "Property"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "localId": "346",
+                                      "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                      "value": "ombCategory",
+                                      "type": "Literal"
+                                    }
+                                  ]
+                                },
+                                "return": {
+                                  "localId": "349",
+                                  "distinct": false,
+                                  "expression": {
+                                    "localId": "350",
+                                    "path": "value",
+                                    "type": "Property",
+                                    "source": {
+                                      "localId": "351",
+                                      "name": "$this",
+                                      "type": "AliasRef"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "let": [],
+                          "relationship": [],
+                          "return": {
+                            "localId": "356",
+                            "distinct": false,
+                            "expression": {
+                              "localId": "354",
+                              "name": "ToCode",
+                              "libraryName": "FHIRHelpers",
+                              "type": "FunctionRef",
+                              "signature": [],
+                              "operand": [
+                                {
+                                  "localId": "355",
+                                  "name": "$this",
+                                  "type": "AliasRef"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "localId": "371",
+                          "locator": "42:34-42:43",
+                          "type": "Query",
+                          "source": [
+                            {
+                              "localId": "372",
+                              "alias": "$this",
+                              "expression": {
+                                "localId": "367",
+                                "type": "Query",
+                                "source": [
+                                  {
+                                    "localId": "361",
+                                    "alias": "$this",
+                                    "expression": {
+                                      "localId": "360",
+                                      "path": "extension",
+                                      "type": "Property",
+                                      "source": {
+                                        "localId": "359",
+                                        "name": "R",
+                                        "type": "AliasRef"
+                                      }
+                                    }
+                                  }
+                                ],
+                                "let": [],
+                                "relationship": [],
+                                "where": {
+                                  "localId": "366",
+                                  "type": "Equal",
+                                  "signature": [],
+                                  "operand": [
+                                    {
+                                      "localId": "363",
+                                      "name": "ToString",
+                                      "libraryName": "FHIRHelpers",
+                                      "type": "FunctionRef",
+                                      "signature": [
+                                        {
+                                          "localId": "364",
+                                          "name": "{http://hl7.org/fhir}uri",
+                                          "type": "NamedTypeSpecifier"
+                                        }
+                                      ],
+                                      "operand": [
+                                        {
+                                          "localId": "362",
+                                          "path": "url",
+                                          "scope": "$this",
+                                          "type": "Property"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "localId": "365",
+                                      "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                      "value": "detailed",
+                                      "type": "Literal"
+                                    }
+                                  ]
+                                },
+                                "return": {
+                                  "localId": "368",
+                                  "distinct": false,
+                                  "expression": {
+                                    "localId": "369",
+                                    "path": "value",
+                                    "type": "Property",
+                                    "source": {
+                                      "localId": "370",
+                                      "name": "$this",
+                                      "type": "AliasRef"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ],
+                          "let": [],
+                          "relationship": [],
+                          "return": {
+                            "localId": "375",
+                            "distinct": false,
+                            "expression": {
+                              "localId": "373",
+                              "name": "ToCode",
+                              "libraryName": "FHIRHelpers",
+                              "type": "FunctionRef",
+                              "signature": [],
+                              "operand": [
+                                {
+                                  "localId": "374",
+                                  "name": "$this",
+                                  "type": "AliasRef"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "display",
+                    "value": {
+                      "localId": "391",
+                      "locator": "43:16-43:21",
+                      "type": "SingletonFrom",
+                      "signature": [],
+                      "operand": {
+                        "localId": "387",
+                        "type": "Query",
+                        "source": [
+                          {
+                            "localId": "381",
+                            "alias": "$this",
+                            "expression": {
+                              "localId": "380",
+                              "path": "extension",
+                              "type": "Property",
+                              "source": {
+                                "localId": "379",
+                                "name": "R",
+                                "type": "AliasRef"
+                              }
+                            }
+                          }
+                        ],
+                        "let": [],
+                        "relationship": [],
+                        "where": {
+                          "localId": "386",
+                          "type": "Equal",
+                          "signature": [],
+                          "operand": [
+                            {
+                              "localId": "383",
+                              "name": "ToString",
+                              "libraryName": "FHIRHelpers",
+                              "type": "FunctionRef",
+                              "signature": [
+                                {
+                                  "localId": "384",
+                                  "name": "{http://hl7.org/fhir}uri",
+                                  "type": "NamedTypeSpecifier"
+                                }
+                              ],
+                              "operand": [
+                                {
+                                  "localId": "382",
+                                  "path": "url",
+                                  "scope": "$this",
+                                  "type": "Property"
+                                }
+                              ]
+                            },
+                            {
+                              "localId": "385",
+                              "valueType": "{urn:hl7-org:elm-types:r1}String",
+                              "value": "text",
+                              "type": "Literal"
+                            }
+                          ]
+                        },
+                        "return": {
+                          "localId": "388",
+                          "distinct": false,
+                          "expression": {
+                            "localId": "389",
+                            "path": "value.value",
+                            "type": "Property",
+                            "source": {
+                              "localId": "390",
+                              "name": "$this",
+                              "type": "AliasRef"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "localId": "395",
+          "locator": "46:1-51:5",
+          "name": "SDE Sex",
+          "context": "Patient",
+          "accessLevel": "Public",
+          "annotation": [
+            {
+              "type": "Annotation",
+              "s": {
+                "r": "395",
+                "s": [
+                  {
+                    "value": ["", "define ", "\"SDE Sex\"", ":\n  "]
+                  },
+                  {
+                    "r": "396",
+                    "s": [
+                      {
+                        "value": ["case\n    "]
+                      },
+                      {
+                        "r": "397",
+                        "s": [
+                          {
+                            "value": ["when "]
+                          },
+                          {
+                            "r": "398",
+                            "s": [
+                              {
+                                "r": "401",
+                                "s": [
+                                  {
+                                    "r": "399",
+                                    "s": [
+                                      {
+                                        "value": ["Patient"]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "value": ["."]
+                                  },
+                                  {
+                                    "r": "401",
+                                    "s": [
+                                      {
+                                        "value": ["gender"]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": [" ", "=", " "]
+                              },
+                              {
+                                "r": "402",
+                                "s": [
+                                  {
+                                    "value": ["'male'"]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "value": [" then "]
+                          },
+                          {
+                            "r": "406",
+                            "s": [
+                              {
+                                "value": ["\"M\""]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "value": ["\n    "]
+                      },
+                      {
+                        "r": "407",
+                        "s": [
+                          {
+                            "value": ["when "]
+                          },
+                          {
+                            "r": "408",
+                            "s": [
+                              {
+                                "r": "411",
+                                "s": [
+                                  {
+                                    "r": "409",
+                                    "s": [
+                                      {
+                                        "value": ["Patient"]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "value": ["."]
+                                  },
+                                  {
+                                    "r": "411",
+                                    "s": [
+                                      {
+                                        "value": ["gender"]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "value": [" ", "=", " "]
+                              },
+                              {
+                                "r": "412",
+                                "s": [
+                                  {
+                                    "value": ["'female'"]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "value": [" then "]
+                          },
+                          {
+                            "r": "416",
+                            "s": [
+                              {
+                                "value": ["\"F\""]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "r": "417",
+                        "value": ["\n    else ", "null", "\n  end"]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "expression": {
+            "localId": "396",
+            "locator": "47:3-51:5",
+            "type": "Case",
+            "caseItem": [
+              {
+                "localId": "397",
+                "locator": "48:5-48:41",
+                "when": {
+                  "localId": "398",
+                  "locator": "48:10-48:32",
+                  "type": "Equal",
+                  "signature": [
+                    {
+                      "localId": "404",
+                      "name": "{urn:hl7-org:elm-types:r1}String",
+                      "type": "NamedTypeSpecifier"
+                    },
+                    {
+                      "localId": "405",
+                      "name": "{urn:hl7-org:elm-types:r1}String",
+                      "type": "NamedTypeSpecifier"
+                    }
+                  ],
+                  "operand": [
+                    {
+                      "localId": "401",
+                      "locator": "48:10-48:23",
+                      "path": "value",
+                      "type": "Property",
+                      "source": {
+                        "localId": "400",
+                        "path": "gender",
+                        "type": "Property",
+                        "source": {
+                          "localId": "399",
+                          "locator": "48:10-48:16",
+                          "name": "Patient",
+                          "type": "ExpressionRef"
+                        }
+                      }
+                    },
+                    {
+                      "localId": "402",
+                      "locator": "48:27-48:32",
+                      "valueType": "{urn:hl7-org:elm-types:r1}String",
+                      "value": "male",
+                      "type": "Literal"
+                    }
+                  ]
+                },
+                "then": {
+                  "localId": "406",
+                  "locator": "48:39-48:41",
+                  "name": "M",
+                  "type": "CodeRef"
+                }
+              },
+              {
+                "localId": "407",
+                "locator": "49:5-49:43",
+                "when": {
+                  "localId": "408",
+                  "locator": "49:10-49:34",
+                  "type": "Equal",
+                  "signature": [
+                    {
+                      "localId": "414",
+                      "name": "{urn:hl7-org:elm-types:r1}String",
+                      "type": "NamedTypeSpecifier"
+                    },
+                    {
+                      "localId": "415",
+                      "name": "{urn:hl7-org:elm-types:r1}String",
+                      "type": "NamedTypeSpecifier"
+                    }
+                  ],
+                  "operand": [
+                    {
+                      "localId": "411",
+                      "locator": "49:10-49:23",
+                      "path": "value",
+                      "type": "Property",
+                      "source": {
+                        "localId": "410",
+                        "path": "gender",
+                        "type": "Property",
+                        "source": {
+                          "localId": "409",
+                          "locator": "49:10-49:16",
+                          "name": "Patient",
+                          "type": "ExpressionRef"
+                        }
+                      }
+                    },
+                    {
+                      "localId": "412",
+                      "locator": "49:27-49:34",
+                      "valueType": "{urn:hl7-org:elm-types:r1}String",
+                      "value": "female",
+                      "type": "Literal"
+                    }
+                  ]
+                },
+                "then": {
+                  "localId": "416",
+                  "locator": "49:41-49:43",
+                  "name": "F",
+                  "type": "CodeRef"
+                }
+              }
+            ],
+            "else": {
+              "localId": "418",
+              "asType": "{urn:hl7-org:elm-types:r1}Code",
+              "type": "As",
+              "signature": [],
+              "operand": {
+                "localId": "417",
+                "locator": "50:10-50:13",
+                "type": "Null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

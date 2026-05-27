@@ -6,7 +6,7 @@ module.exports = {
     'scope-enum': [
       2,
       'always',
-      ['engine', 'shared', 'tools', 'ci', 'docker', 'deps', 'config', 'docs', 'release'],
+      ['engine', 'shared', 'tools', 'measures', 'ci', 'docker', 'deps', 'config', 'docs', 'release'],
     ],
     'scope-empty': [1, 'never'],
   },
