@@ -2,8 +2,13 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { TerminusModule } from '@nestjs/terminus';
 import { HealthController } from './health.controller';
 import { FhirHealthIndicator } from './indicators/fhir.health.indicator';
+import { MeasureEngineHealthIndicator } from './indicators/measure-engine.health.indicator';
 
 const mockFhirIndicator = {
+  isHealthy: jest.fn(),
+};
+
+const mockMeasureEngineIndicator = {
   isHealthy: jest.fn(),
 };
 
@@ -20,10 +25,17 @@ describe('HealthController', () => {
       },
     });
 
+    mockMeasureEngineIndicator.isHealthy.mockReturnValue({
+      measureEngine: { status: 'up', loadedMeasures: ['cms165-cbp'], cqlExecutionVersion: '3.3.0' },
+    });
+
     const module: TestingModule = await Test.createTestingModule({
       imports: [TerminusModule],
       controllers: [HealthController],
-      providers: [{ provide: FhirHealthIndicator, useValue: mockFhirIndicator }],
+      providers: [
+        { provide: FhirHealthIndicator, useValue: mockFhirIndicator },
+        { provide: MeasureEngineHealthIndicator, useValue: mockMeasureEngineIndicator },
+      ],
     }).compile();
 
     controller = module.get<HealthController>(HealthController);
@@ -33,7 +45,7 @@ describe('HealthController', () => {
     expect(controller).toBeDefined();
   });
 
-  it('GET /health returns status ok with version, node, uptime, and fhir indicator', async () => {
+  it('GET /health returns status ok with version, node, uptime, fhir, and measureEngine indicators', async () => {
     const result = await controller.check();
 
     expect(result.status).toBe('ok');
@@ -41,6 +53,7 @@ describe('HealthController', () => {
     expect(result.node).toMatch(/^v\d+/);
     expect(typeof result.uptime).toBe('number');
     expect(result.info?.['fhir']).toBeDefined();
+    expect(result.info?.['measureEngine']).toBeDefined();
   });
 
   it('GET /health does not throw when FHIR is down (soft-down: HTTP stays 200)', async () => {

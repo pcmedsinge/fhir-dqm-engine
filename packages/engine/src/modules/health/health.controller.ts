@@ -9,6 +9,7 @@ import {
 import { ServiceUnavailableException } from '@nestjs/common';
 import pkg from '../../../package.json';
 import { FhirHealthIndicator } from './indicators/fhir.health.indicator';
+import { MeasureEngineHealthIndicator } from './indicators/measure-engine.health.indicator';
 
 type HealthResponse = HealthCheckResult & { version: string; node: string; uptime: number };
 
@@ -18,11 +19,14 @@ export class HealthController {
   constructor(
     private readonly health: HealthCheckService,
     private readonly fhirIndicator: FhirHealthIndicator,
+    private readonly measureEngineIndicator: MeasureEngineHealthIndicator,
   ) {}
 
   @Get()
   @HealthCheck()
-  @ApiOperation({ summary: 'Service health check (includes FHIR server status)' })
+  @ApiOperation({
+    summary: 'Service health check (includes FHIR server and measure engine status)',
+  })
   async check(): Promise<HealthResponse> {
     const extra = {
       version: pkg.version,
@@ -34,6 +38,7 @@ export class HealthController {
       const result = await this.health.check([
         (): Promise<HealthIndicatorResult> => Promise.resolve({ service: { status: 'up' } }),
         (): Promise<HealthIndicatorResult> => this.fhirIndicator.isHealthy(),
+        (): HealthIndicatorResult => this.measureEngineIndicator.isHealthy(),
       ]);
       return { ...result, ...extra };
     } catch (err) {

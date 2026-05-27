@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 import { HealthModule } from './modules/health/health.module';
 import { FhirModule } from './modules/fhir/fhir.module';
+import { MeasureEngineModule } from './modules/measure-engine/measure-engine.module';
 
 @Module({
   imports: [
@@ -15,10 +16,13 @@ import { FhirModule } from './modules/fhir/fhir.module';
         FHIR_SERVER_URL: Joi.string().uri().default('http://localhost:8080/fhir'),
         FHIR_REQUEST_TIMEOUT_MS: Joi.number().integer().min(1).default(30000),
         FHIR_HEALTH_CHECK_TIMEOUT_MS: Joi.number().integer().min(1).default(3000),
+        MEASURES_PATH: Joi.string().default('packages/engine/measures'),
+        MEASUREREPORT_PERSIST_TO_FHIR: Joi.string().valid('true', 'false').default('true'),
       }),
     }),
     HealthModule,
     FhirModule,
+    MeasureEngineModule,
   ],
 })
 export class AppModule {}

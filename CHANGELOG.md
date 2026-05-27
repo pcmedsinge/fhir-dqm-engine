@@ -11,6 +11,31 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.3.0-alpha.1] — 2026-05-27
+
+### Added
+
+- **CMS165 CBP measure artifacts** (`packages/engine/measures/cms165-cbp/`) — pre-compiled ELM (10 libraries), CQL source, 33 FHIR ValueSet resources, FHIR Measure resource, and `valueSets.json` in cql-execution format. Sourced from `cqframework/ecqm-content-qicore-2024` main branch.
+- **`cql-execution@3.3.0` + `cql-exec-fhir@2.1.6`** added as engine dependencies; both ship TypeScript types — no shims needed.
+- **`MeasureEngineModule`** (`packages/engine/src/modules/measure-engine/`) — full NestJS module containing:
+  - `MeasureLoaderService` — reads ELM + value sets from disk into an in-memory cache; `loadMeasure(id)` and `listMeasureIds()`.
+  - `FhirDataSourceAdapter` — bulk-fetches Patients, Conditions, Observations (LOINC `85354-9` BP only), Encounters, Procedures, and MedicationRequests in parallel; adds QICore BP profile URL to Synthea observations for correct CQL profile retrieval; groups by patient into per-patient FHIR Bundles.
+  - `CqlRuntimeService` — wires `cql-execution` Repository / Library / Executor + `cql-exec-fhir` PatientSource; per-request instantiation (ADR 0002); returns `PatientResultsMap`.
+  - `MeasureReportService` — assembles FHIR `MeasureReport` (type=`summary`) from raw results; PUTs to HAPI with deterministic ID `{measureId}-{periodStart}-{periodEnd}`; `deriveGaps()` returns denominator-met, numerator-not-met patients.
+  - `MeasurePublisherService` — `OnApplicationBootstrap` hook: PUTs FHIR Measure resource(s) to HAPI on engine start (idempotent).
+  - `MeasureController` — `GET /v1/measures`, `POST /v1/measures/:id/compute`, `GET /v1/measures/:id/report`, `GET /v1/measures/:id/gaps`.
+  - `ComputeRequestDto` — class-validator `@IsDateString()` DTO for compute body.
+- **`MeasureEngineHealthIndicator`** — soft-down indicator reporting `loadedMeasures` list and `cqlExecutionVersion`; wired into `/health`.
+- **ADRs** `docs/adr/0001-pre-compile-elm.md` and `docs/adr/0002-per-request-engine-instantiation.md`.
+- **`MEASURES_PATH`** and **`MEASUREREPORT_PERSIST_TO_FHIR`** env vars in `app.module.ts` Joi schema and `.env.example`.
+
+### Changed
+
+- `/health` now includes a `measureEngine` indicator alongside `fhir`.
+- `commitlint.config.cjs` — added `measures` to the allowed scope list.
+
+---
+
 ## [0.2.0-alpha.1] — 2026-05-27
 
 ### Added
