@@ -11,6 +11,9 @@
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
     "build": "pnpm -r build",
+    "synthea:generate": "tsx tools/synthea/generate.ts",
+    "fhir:load": "tsx tools/loader/load-to-hapi.ts",
+    "seed:fhir": "pnpm run synthea:generate && pnpm run fhir:load",
     "prepare": "node -e \"require('fs').existsSync('node_modules/.bin/husky')&&require('child_process').execSync('husky',{stdio:'inherit'})\""
   },
   "lint-staged": {
@@ -21,12 +24,15 @@
   "devDependencies": {
     "@commitlint/cli": "^21.0.1",
     "@commitlint/config-conventional": "^21.0.1",
+    "@types/yargs": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "eslint": "^9.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.5",
     "prettier": "^3.0.0",
-    "typescript": "^5.0.0"
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0",
+    "yargs": "^17.0.0"
   }
 }
