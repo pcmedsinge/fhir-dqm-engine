@@ -27,7 +27,9 @@ synthea/
 synthea-output/
 *.synthea.json
 
-# Phase 2: Synthea generator output (tools/synthea/output/)
+# Phase 2: Synthea generator — scripts are committed, generated output is not.
+# Un-ignore the scripts dir (caught by the broad `synthea/` pattern above).
+!tools/synthea/
 tools/synthea/output/
 .cache/synthea/
 
