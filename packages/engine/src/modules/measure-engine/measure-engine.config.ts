@@ -10,7 +10,7 @@ export class MeasureEngineConfig {
   constructor(config: ConfigService) {
     this.measuresPath = config.get<string>(
       'MEASURES_PATH',
-      path.resolve('packages/engine/measures'),
+      path.resolve(__dirname, '../../../../measures'),
     );
     this.persistToFhir = config.get<string>('MEASUREREPORT_PERSIST_TO_FHIR', 'true') === 'true';
   }
