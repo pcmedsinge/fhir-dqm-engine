@@ -1,6 +1,6 @@
 {
   "name": "@pramana/engine",
-  "version": "0.1.0-alpha.1",
+  "version": "0.2.0-alpha.1",
   "description": "NestJS HTTP service — FHIR DQM and care gap engine (Pramana)",
   "author": "Parag Singe",
   "private": true,

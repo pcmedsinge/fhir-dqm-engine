@@ -1,6 +1,6 @@
 {
   "name": "pramana",
-  "version": "0.1.0-alpha.1",
+  "version": "0.2.0-alpha.1",
   "private": true,
   "description": "FHIR-based DQM and care gap engine (Pramana) — monorepo root",
   "engines": {

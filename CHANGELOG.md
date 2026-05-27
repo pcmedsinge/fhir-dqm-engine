@@ -11,6 +11,42 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [0.2.0-alpha.1] — 2026-05-27
+
+### Added
+
+- **HAPI FHIR R4 server** (`hapiproject/hapi:v8.8.0-1`) + **Postgres 16** in `docker-compose.yml` with a named volume `hapi-postgres-data` and a `pramana` bridge network. Engine service moved to the `containerized-engine` profile (run on host by default).
+- **Synthea patient generator** (`tools/synthea/generate.ts`) — runs Synthea inside `eclipse-temurin:17-jre`; generates 250 Massachusetts patients with seed `20250523`, 10 years of history, FHIR R4 transaction bundles. JAR cached in `.cache/synthea/` so subsequent runs skip the ~60 MB download.
+- **HAPI bulk loader** (`tools/loader/load-to-hapi.ts`) with five phases:
+  - **A. Readiness** — polls `/fhir/metadata` up to 180 s (HAPI JVM cold-start takes ~4 min).
+  - **B. Sentinel** — skips if `Basic/urn-pramana-seed-marker` exists; `--force` overrides.
+  - **B.5 Pre-pass** — PUTs 1339 minimal Practitioner / Location / Organization stubs before patient bundles (HAPI v8 strict conditional-reference validation requires referenced resources to exist). 30 s settle after pre-pass.
+  - **C. Load** — sequential bundle POSTs; 2 retries (15 s / 45 s waits to survive JVM GC pauses); 300 s timeout for bundles > 5 MB; 45 s cooldown after each large bundle.
+  - **D. Sentinel write** — marks HAPI seeded on full success.
+  - **E. Summary** — prints resource counts per type.
+- **`pnpm run seed:fhir`** — orchestrates `synthea:generate` then `fhir:load`.
+- **`@pramana/tools`** workspace package (`tools/`) with its own lint and test targets.
+- **NestJS FHIR client module** (`packages/engine/src/modules/fhir/`):
+  - `FhirClientService` — axios wrapper with configurable timeout, 2 retries on 5xx, structured logging, minimal inline FHIR R4 interfaces (R3-only `@types/fhir` skipped).
+  - `FhirStatsController` — `GET /v1/fhir/stats` returning parallel resource counts for 7 types + FHIR server version.
+- **`FhirHealthIndicator`** — Terminus `HealthIndicator` calling `getCapabilityStatement()` (3 s timeout); returns soft-down `{ fhir: { status: "down", ... } }` on failure instead of throwing.
+- **Soft-down `/health`** — `HealthController` catches Terminus's `ServiceUnavailableException` and returns HTTP 200 with `status: "error"` in the body so development continues when HAPI isn't running.
+
+### Changed
+
+- `GET /health` response now includes `info.fhir` alongside `info.service`.
+- `AppModule` Joi schema extended with `FHIR_SERVER_URL`, `FHIR_REQUEST_TIMEOUT_MS`, `FHIR_HEALTH_CHECK_TIMEOUT_MS` (all have dev-friendly defaults).
+- `.gitignore` un-ignores `tools/synthea/` scripts (caught by the broad `synthea/` pattern) while keeping `tools/synthea/output/` and `.cache/synthea/` ignored.
+- `commitlint` scope list extended with `tools`.
+- README Quick Start updated: Node ≥ 22, two-terminal flow (compose + engine), `seed:fhir` step, updated curl examples.
+
+### Notes
+
+- The HAPI v8.8.0-1 image is fully distroless (only `java` binary — no shell, wget, or curl). Docker `HEALTHCHECK` is not used; readiness is verified by the loader's poll and the engine's FHIR indicator.
+- Synthea's `--exporter.years_of_history=10` produces files up to ~60 MB. Large bundles cause HAPI JVM GC pauses; the loader adds adaptive cooldowns to recover cleanly.
+
+---
+
 ## [0.1.0-alpha.1] — 2026-05-22
 
 ### Added
@@ -41,4 +77,5 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - ESM (`"type": "module"`) was evaluated for the engine package. NestJS 11 uses `module: NodeNext` TypeScript resolution (stricter imports) but compiles to CommonJS output by default. Pure ESM requires additional Jest configuration and has known friction points with NestJS decorators. Deferred to a future phase — noted as technical debt.
 - Phase 2 will add FHIR R4 ingest, HAPI FHIR in Docker Compose, and US Core resource type aliases in `@pramana/shared`.
 
+[0.2.0-alpha.1]: https://github.com/pcmedsinge/fhir-dqm-engine/releases/tag/v0.2.0-alpha.1
 [0.1.0-alpha.1]: https://github.com/pcmedsinge/fhir-dqm-engine/releases/tag/v0.1.0-alpha.1
