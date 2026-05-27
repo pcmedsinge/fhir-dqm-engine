@@ -30,7 +30,7 @@ export class MeasureReportService {
       if (r.initialPopulation) ipp++;
       if (r.denominator) denom++;
       if (r.denominatorExclusion) denomExcl++;
-      if (r.numerator) numerator++;
+      if (r.denominator && !r.denominatorExclusion && r.numerator) numerator++;
     }
 
     const effectiveDenom = denom - denomExcl;

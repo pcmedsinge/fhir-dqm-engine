@@ -12,7 +12,7 @@ import { FhirDataSourceAdapter } from '../adapters/fhir-data-source.adapter';
 const POPULATION_NAMES = {
   initialPopulation: 'Initial Population',
   denominator: 'Denominator',
-  denominatorExclusion: 'Denominator Exclusion',
+  denominatorExclusion: 'Denominator Exclusions',
   numerator: 'Numerator',
 } as const;
 
