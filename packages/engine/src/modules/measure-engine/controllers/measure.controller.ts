@@ -88,9 +88,9 @@ export class MeasureController {
 
     const getCount = (code: string): number => {
       const pop = pops.find((p) => {
-        const coding = (
-          (p['code'] as Record<string, unknown>)?.['coding'] as Array<Record<string, unknown>>
-        ) ?? [];
+        const coding =
+          ((p['code'] as Record<string, unknown>)?.['coding'] as Array<Record<string, unknown>>) ??
+          [];
         return coding[0]?.['code'] === code;
       });
       return (pop?.['count'] as number) ?? 0;
@@ -145,9 +145,21 @@ export class MeasureController {
     numeratorPct: number;
     pct: (n: number) => number;
   }): string {
-    const { title, description, measureFhirId, periodStart, periodEnd,
-            ipp, denomExcl, effectiveDenom, numerator, gaps,
-            scorePercent, numeratorPct, pct } = d;
+    const {
+      title,
+      description,
+      measureFhirId,
+      periodStart,
+      periodEnd,
+      ipp,
+      denomExcl,
+      effectiveDenom,
+      numerator,
+      gaps,
+      scorePercent,
+      numeratorPct,
+      pct,
+    } = d;
 
     const row = (
       dot: string,
