@@ -4,6 +4,7 @@ import { MeasureLoaderService } from '../services/measure-loader.service';
 import { CqlRuntimeService } from '../services/cql-runtime.service';
 import { MeasureReportService } from '../services/measure-report.service';
 import { CohortService } from '../../cohort/cohort.service';
+import { CareGapService } from '../../care-gap/care-gap.service';
 import { FhirClientService } from '../../fhir/fhir.client.service';
 
 const MOCK_LOADED_MEASURE = {
@@ -41,6 +42,10 @@ describe('MeasureController', () => {
         {
           provide: CohortService,
           useValue: { resolvePatientIds: jest.fn().mockResolvedValue(null) },
+        },
+        {
+          provide: CareGapService,
+          useValue: { deriveGapsFromReport: jest.fn().mockResolvedValue({ gaps: [] }) },
         },
         {
           provide: FhirClientService,

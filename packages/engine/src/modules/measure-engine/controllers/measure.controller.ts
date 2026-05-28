@@ -5,9 +5,9 @@ import { MeasureLoaderService } from '../services/measure-loader.service';
 import { CqlRuntimeService } from '../services/cql-runtime.service';
 import { MeasureReportService } from '../services/measure-report.service';
 import { CohortService } from '../../cohort/cohort.service';
+import { CareGapService } from '../../care-gap/care-gap.service';
 import { FhirClientService } from '../../fhir/fhir.client.service';
 import type { FhirResource } from '../../fhir/interfaces/fhir-resource.interface';
-import type { CareGap } from '../interfaces/measure-report.interface';
 
 type FhirMeasureReport = FhirResource & Record<string, unknown>;
 
@@ -21,6 +21,7 @@ export class MeasureController {
     private readonly runtime: CqlRuntimeService,
     private readonly reporter: MeasureReportService,
     private readonly cohortService: CohortService,
+    private readonly careGapService: CareGapService,
     private readonly fhirClient: FhirClientService,
   ) {}
 
@@ -47,10 +48,17 @@ export class MeasureController {
     @Body() dto: ComputeRequestDto,
   ): Promise<Record<string, unknown>> {
     const cohortId = dto.cohortId ?? 'all-patients';
-    this.logger.log(`Computing measure ${id} for ${dto.periodStart}/${dto.periodEnd} (cohort: ${cohortId})`);
+    this.logger.log(
+      `Computing measure ${id} for ${dto.periodStart}/${dto.periodEnd} (cohort: ${cohortId})`,
+    );
     const patientIds = await this.cohortService.resolvePatientIds(cohortId);
     const measure = this.loader.loadMeasure(id);
-    const results = await this.runtime.execute(measure, dto.periodStart, dto.periodEnd, patientIds ?? undefined);
+    const results = await this.runtime.execute(
+      measure,
+      dto.periodStart,
+      dto.periodEnd,
+      patientIds ?? undefined,
+    );
     const report = this.reporter.assemble(measure, results, dto.periodStart, dto.periodEnd);
     await this.reporter.persist(report);
     return report;
@@ -70,18 +78,20 @@ export class MeasureController {
   }
 
   @Get(':id/gaps')
-  @ApiOperation({ summary: 'List patients with open care gaps (denom-met, numerator-not-met)' })
+  @ApiOperation({
+    summary: 'Derive open care gaps from the stored MeasureReport. Run /compute first (returns 409 if no report exists).',
+  })
   @ApiQuery({ name: 'periodStart', required: false, example: '2025-01-01' })
   @ApiQuery({ name: 'periodEnd', required: false, example: '2025-12-31' })
+  @ApiQuery({ name: 'cohortId', required: false, example: 'all-patients' })
   async getGaps(
     @Param('id') id: string,
     @Query('periodStart') periodStart = '2025-01-01',
     @Query('periodEnd') periodEnd = '2025-12-31',
-  ): Promise<{ measureId: string; openGapsCount: number; gaps: CareGap[] }> {
-    const measure = this.loader.loadMeasure(id);
-    const results = await this.runtime.execute(measure, periodStart, periodEnd);
-    const gaps = this.reporter.deriveGaps(results, id);
-    return { measureId: id, openGapsCount: gaps.length, gaps };
+    @Query('cohortId') cohortId = 'all-patients',
+  ) {
+    const reportId = this.reporter.buildReportId(id, periodStart, periodEnd);
+    return this.careGapService.deriveGapsFromReport(id, reportId, cohortId, periodStart, periodEnd);
   }
 
   @Get(':id/summary')
