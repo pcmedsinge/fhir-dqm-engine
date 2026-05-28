@@ -36,10 +36,11 @@ export class CqlRuntimeService {
     measure: LoadedMeasure,
     periodStart: string,
     periodEnd: string,
+    patientIds?: string[],
   ): Promise<PatientResultsMap> {
     this.logger.log(`Executing ${measure.id} for ${periodStart}/${periodEnd}`);
 
-    const patientBundles = await this.dataSource.buildPatientBundles();
+    const patientBundles = await this.dataSource.buildPatientBundles(patientIds);
     this.logger.log(`Processing ${patientBundles.length} patients...`);
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

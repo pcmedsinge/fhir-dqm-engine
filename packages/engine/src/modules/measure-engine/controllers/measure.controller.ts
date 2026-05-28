@@ -4,6 +4,7 @@ import { ComputeRequestDto } from '../dto/compute-request.dto';
 import { MeasureLoaderService } from '../services/measure-loader.service';
 import { CqlRuntimeService } from '../services/cql-runtime.service';
 import { MeasureReportService } from '../services/measure-report.service';
+import { CohortService } from '../../cohort/cohort.service';
 import { FhirClientService } from '../../fhir/fhir.client.service';
 import type { FhirResource } from '../../fhir/interfaces/fhir-resource.interface';
 import type { CareGap } from '../interfaces/measure-report.interface';
@@ -19,13 +20,24 @@ export class MeasureController {
     private readonly loader: MeasureLoaderService,
     private readonly runtime: CqlRuntimeService,
     private readonly reporter: MeasureReportService,
+    private readonly cohortService: CohortService,
     private readonly fhirClient: FhirClientService,
   ) {}
 
   @Get()
   @ApiOperation({ summary: 'List all measures the engine knows how to run' })
-  listMeasures(): { measures: string[] } {
-    return { measures: this.loader.listMeasureIds() };
+  listMeasures(): { measures: Array<{ id: string; title: string; description: string }> } {
+    const ids = this.loader.listMeasureIds();
+    const measures = ids.map((id) => {
+      const m = this.loader.loadMeasure(id);
+      const rawTitle = (m.fhirMeasure['title'] as string | undefined) ?? id;
+      return {
+        id,
+        title: rawTitle.replace(/FHIR$/, '').trim(),
+        description: (m.fhirMeasure['description'] as string | undefined) ?? '',
+      };
+    });
+    return { measures };
   }
 
   @Post(':id/compute')
@@ -34,9 +46,11 @@ export class MeasureController {
     @Param('id') id: string,
     @Body() dto: ComputeRequestDto,
   ): Promise<Record<string, unknown>> {
-    this.logger.log(`Computing measure ${id} for ${dto.periodStart}/${dto.periodEnd}`);
+    const cohortId = dto.cohortId ?? 'all-patients';
+    this.logger.log(`Computing measure ${id} for ${dto.periodStart}/${dto.periodEnd} (cohort: ${cohortId})`);
+    const patientIds = await this.cohortService.resolvePatientIds(cohortId);
     const measure = this.loader.loadMeasure(id);
-    const results = await this.runtime.execute(measure, dto.periodStart, dto.periodEnd);
+    const results = await this.runtime.execute(measure, dto.periodStart, dto.periodEnd, patientIds ?? undefined);
     const report = this.reporter.assemble(measure, results, dto.periodStart, dto.periodEnd);
     await this.reporter.persist(report);
     return report;

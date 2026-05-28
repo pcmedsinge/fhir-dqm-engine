@@ -3,7 +3,14 @@ import { MeasureController } from './measure.controller';
 import { MeasureLoaderService } from '../services/measure-loader.service';
 import { CqlRuntimeService } from '../services/cql-runtime.service';
 import { MeasureReportService } from '../services/measure-report.service';
+import { CohortService } from '../../cohort/cohort.service';
 import { FhirClientService } from '../../fhir/fhir.client.service';
+
+const MOCK_LOADED_MEASURE = {
+  id: 'cms165-cbp',
+  fhirMeasure: { title: 'Controlling High Blood Pressure FHIR', description: 'Test desc' },
+  valueSetMetadata: [],
+};
 
 describe('MeasureController', () => {
   let controller: MeasureController;
@@ -14,7 +21,10 @@ describe('MeasureController', () => {
       providers: [
         {
           provide: MeasureLoaderService,
-          useValue: { listMeasureIds: () => ['cms165-cbp'], loadMeasure: jest.fn() },
+          useValue: {
+            listMeasureIds: () => ['cms165-cbp'],
+            loadMeasure: jest.fn().mockReturnValue(MOCK_LOADED_MEASURE),
+          },
         },
         {
           provide: CqlRuntimeService,
@@ -29,6 +39,10 @@ describe('MeasureController', () => {
           },
         },
         {
+          provide: CohortService,
+          useValue: { resolvePatientIds: jest.fn().mockResolvedValue(null) },
+        },
+        {
           provide: FhirClientService,
           useValue: {
             getResource: jest.fn(),
@@ -40,7 +54,10 @@ describe('MeasureController', () => {
     controller = module.get(MeasureController);
   });
 
-  it('lists measures', () => {
-    expect(controller.listMeasures()).toEqual({ measures: ['cms165-cbp'] });
+  it('lists measures with id and title', () => {
+    const result = controller.listMeasures();
+    expect(result.measures).toHaveLength(1);
+    expect(result.measures[0].id).toBe('cms165-cbp');
+    expect(result.measures[0].title).toBe('Controlling High Blood Pressure');
   });
 });

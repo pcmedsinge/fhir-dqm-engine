@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 import { HealthModule } from './modules/health/health.module';
 import { FhirModule } from './modules/fhir/fhir.module';
+import { CohortModule } from './modules/cohort/cohort.module';
 import { MeasureEngineModule } from './modules/measure-engine/measure-engine.module';
 
 @Module({
@@ -23,6 +24,7 @@ import { MeasureEngineModule } from './modules/measure-engine/measure-engine.mod
     }),
     HealthModule,
     FhirModule,
+    CohortModule,
     MeasureEngineModule,
   ],
 })
