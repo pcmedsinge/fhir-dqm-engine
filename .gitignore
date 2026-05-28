@@ -289,3 +289,15 @@ notes-local/
 # Generated MeasureReports during development
 measure-reports-local/
 *.measure-report.local.json
+
+# Claude Code internal directory
+.claude/
+
+# Ad-hoc output files
+engine-output.txt
+loader-output.txt
+
+# Compiled test artefacts (tsc emits these alongside source test files)
+packages/engine/test/*.js
+packages/engine/test/*.js.map
+packages/engine/test/*.d.ts.map
