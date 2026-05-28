@@ -13,7 +13,7 @@ export class MeasureLoaderService {
 
   listMeasureIds(): string[] {
     return readdirSync(this.config.measuresPath, { withFileTypes: true })
-      .filter((d) => d.isDirectory())
+      .filter((d) => d.isDirectory() && !d.name.startsWith('_'))
       .map((d) => d.name);
   }
 
@@ -38,13 +38,6 @@ export class MeasureLoaderService {
         .library?.identifier;
       const libId = libInfo?.id ?? file.replace('.json', '');
       elmLibraries[libId] = elm;
-      if (
-        file.includes('ControllingHighBloodPressure') ||
-        file.includes(id.replace('cms165-cbp', 'ControllingHighBloodPressureFHIR'))
-      ) {
-        mainLibraryId = libId;
-        mainLibraryVersion = libInfo?.version ?? '0.1.000';
-      }
     }
 
     if (!mainLibraryId) {

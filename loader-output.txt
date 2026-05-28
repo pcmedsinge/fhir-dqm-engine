@@ -1,0 +1,84 @@
+$ tsx tools/loader/load-to-hapi.ts
+═══════════════════════════════════════════════════════
+ Pramana — HAPI FHIR bulk loader
+═══════════════════════════════════════════════════════
+  FHIR server  : http://localhost:8080/fhir
+  Bundles dir  : E:\PracticeApps\FHIRRelated\fhir-dqm-engine\tools\synthea\output\fhir
+  Force reload : no
+
+Waiting for HAPI at http://localhost:8080/fhir ...
+  HAPI is ready.
+
+Pre-loading 1339 shared resource stubs (Practitioner/Location/Organization)...
+  Pre-loaded 1339 stubs.
+  Waiting 30s for HAPI to settle after stub inserts...
+
+Loading 279 bundles from E:\PracticeApps\FHIRRelated\fhir-dqm-engine\tools\synthea\output\fhir
+Posting to http://localhost:8080/fhir (sequential, 2 retries on 5xx)
+
+  (Large bundle 6.3MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 21.1MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 14.1MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 20.1MB — waiting 45s for HAPI GC to settle...)
+  Loaded 25 / 279 bundles
+  (Large bundle 7.7MB — waiting 45s for HAPI GC to settle...)
+  Loaded 50 / 279 bundles
+  (Large bundle 36.4MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 19.3MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 6.2MB — waiting 45s for HAPI GC to settle...)
+  Loaded 75 / 279 bundles
+  (Large bundle 13.0MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 6.4MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 23.0MB — waiting 45s for HAPI GC to settle...)
+  Loaded 100 / 279 bundles
+  (Large bundle 5.1MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 8.8MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 5.6MB — waiting 45s for HAPI GC to settle...)
+  Loaded 125 / 279 bundles
+  (Large bundle 7.4MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 11.4MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 11.4MB — waiting 45s for HAPI GC to settle...)
+  Loaded 150 / 279 bundles
+  (Large bundle 5.0MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 5.2MB — waiting 45s for HAPI GC to settle...)
+  Loaded 175 / 279 bundles
+  (Large bundle 25.8MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 6.9MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 7.6MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 5.1MB — waiting 45s for HAPI GC to settle...)
+  Loaded 200 / 279 bundles
+  (Large bundle 30.0MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 5.0MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 5.1MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 22.3MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 5.2MB — waiting 45s for HAPI GC to settle...)
+  Loaded 225 / 279 bundles
+  (Large bundle 4.9MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 10.4MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 57.2MB — waiting 45s for HAPI GC to settle...)
+  Loaded 250 / 279 bundles
+  (Large bundle 25.4MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 5.1MB — waiting 45s for HAPI GC to settle...)
+  (Large bundle 10.3MB — waiting 45s for HAPI GC to settle...)
+  Loaded 275 / 279 bundles
+  Loaded 279 / 279 bundles
+
+All 279 bundles loaded successfully.
+Writing sentinel to HAPI...
+Sentinel written.
+
+
+Resource counts in HAPI:
+─────────────────────────────
+  Patient              279
+  Encounter            15474
+  Observation          127702
+  Condition            9867
+  Procedure            42337
+  MedicationRequest    12485
+  DiagnosticReport     30160
+─────────────────────────────
+
+Seeding complete. Run:
+  pnpm --filter @pramana/engine start:dev
+  curl http://localhost:3000/v1/fhir/stats

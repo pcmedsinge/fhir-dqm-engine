@@ -7,23 +7,33 @@ const BP_LOINC_CODE = '85354-9';
 
 type AnyResource = FhirResource & Record<string, unknown>;
 
+function hasBpCode(obs: AnyResource): boolean {
+  const codings = ((obs['code'] as Record<string, unknown>)?.['coding'] as Array<Record<string, unknown>>) ?? [];
+  return codings.some((c) => c['code'] === BP_LOINC_CODE);
+}
+
 @Injectable()
 export class FhirDataSourceAdapter {
   private readonly logger = new Logger(FhirDataSourceAdapter.name);
 
   constructor(private readonly fhirClient: FhirClientService) {}
 
-  async buildPatientBundles(): Promise<FhirBundle[]> {
-    this.logger.log('Building patient bundles from HAPI...');
+  async buildPatientBundles(patientIds?: string[]): Promise<FhirBundle[]> {
+    this.logger.log(
+      patientIds
+        ? `Building patient bundles for ${patientIds.length} cohort patients from HAPI...`
+        : 'Building patient bundles (all patients) from HAPI...',
+    );
+
+    const patientParam: Record<string, string> = patientIds?.length
+      ? { _id: patientIds.join(','), _count: String(patientIds.length) }
+      : { _count: '1000' };
 
     const [patients, conditions, observations, encounters, procedures, medicationRequests] =
       await Promise.all([
-        this.fetchAll('Patient', { _count: '1000' }),
+        this.fetchAll('Patient', patientParam),
         this.fetchAll('Condition', { _count: '2000' }),
-        this.fetchAll('Observation', {
-          code: `http://loinc.org|${BP_LOINC_CODE}`,
-          _count: '5000',
-        }),
+        this.fetchAll('Observation', { _count: '5000' }),
         this.fetchAll('Encounter', { _count: '2000' }),
         this.fetchAll('Procedure', { _count: '2000' }),
         this.fetchAll('MedicationRequest', { _count: '2000' }),
@@ -35,33 +45,34 @@ export class FhirDataSourceAdapter {
         `${procedures.length} procedures, ${medicationRequests.length} medreqs`,
     );
 
+    // Tag BP panel observations with the QICore BP profile so CMS165 CQL can match them.
+    // Only applied to observations that carry the BP LOINC code — other obs types are untouched.
     const taggedObs = observations.map((obs) => {
+      if (!hasBpCode(obs)) return obs;
       const meta = (obs['meta'] as Record<string, unknown> | undefined) ?? {};
       const profiles = (meta['profile'] as string[] | undefined) ?? [];
-      if (!profiles.includes(QICORE_BP_PROFILE)) {
-        return {
-          ...obs,
-          meta: { ...meta, profile: [...profiles, QICORE_BP_PROFILE] },
-        };
-      }
-      return obs;
+      if (profiles.includes(QICORE_BP_PROFILE)) return obs;
+      return { ...obs, meta: { ...meta, profile: [...profiles, QICORE_BP_PROFILE] } };
     });
 
+    const patientSet = patientIds?.length
+      ? new Set(patientIds.map((id) => (id.startsWith('Patient/') ? id : `Patient/${id}`)))
+      : null;
+
     const byPatient = new Map<string, AnyResource[]>();
-    for (const res of [
-      ...conditions,
-      ...taggedObs,
-      ...encounters,
-      ...procedures,
-      ...medicationRequests,
-    ]) {
+    for (const res of [...conditions, ...taggedObs, ...encounters, ...procedures, ...medicationRequests]) {
       const ref = this.extractPatientRef(res);
       if (!ref) continue;
+      if (patientSet && !patientSet.has(ref)) continue;
       if (!byPatient.has(ref)) byPatient.set(ref, []);
       byPatient.get(ref)!.push(res);
     }
 
-    return patients.map((patient) => {
+    const targetPatients = patientSet
+      ? patients.filter((p) => patientSet.has(`Patient/${p.id ?? ''}`))
+      : patients;
+
+    return targetPatients.map((patient) => {
       const patientRef = `Patient/${patient.id ?? ''}`;
       const relatedResources = byPatient.get(patientRef) ?? [];
       return {
@@ -77,7 +88,6 @@ export class FhirDataSourceAdapter {
     params: Record<string, string>,
   ): Promise<AnyResource[]> {
     const results: AnyResource[] = [];
-
     let bundle = await this.fhirClient.searchResources<AnyResource>(resourceType, params);
 
     while (true) {
