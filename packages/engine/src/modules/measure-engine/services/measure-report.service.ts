@@ -41,7 +41,7 @@ export class MeasureReportService {
       id: this.buildReportId(measure.id, periodStart, periodEnd),
       status: 'complete',
       type: 'summary',
-      measure: `Measure/${measure.id}`,
+      measure: `Measure/${(measure.fhirMeasure['id'] as string | undefined) ?? measure.id}`,
       date: new Date().toISOString(),
       period: {
         start: periodStart,
@@ -69,19 +69,25 @@ export class MeasureReportService {
   async persist(report: Record<string, unknown>): Promise<void> {
     if (!this.config.persistToFhir) return;
     const id = report['id'] as string;
+    const url = `${this.fhirClient.fhirServerUrl}/MeasureReport/${id}`;
+    const headers = { 'Content-Type': 'application/fhir+json', Accept: 'application/fhir+json' };
 
-    try {
-      await axios.put(`${this.fhirClient.fhirServerUrl}/MeasureReport/${id}`, report, {
-        headers: {
-          'Content-Type': 'application/fhir+json',
-          Accept: 'application/fhir+json',
-        },
-        timeout: 15_000,
-      });
-      this.logger.log(`MeasureReport/${id} persisted to HAPI`);
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
-      this.logger.warn(`Failed to persist MeasureReport/${id}: ${message}`);
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        await axios.put(url, report, { headers, timeout: 15_000 });
+        this.logger.log(`MeasureReport/${id} persisted to HAPI`);
+        return;
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err);
+        const isConnReset = message.includes('ECONNABORTED') || message.includes('ECONNRESET');
+        if (isConnReset && attempt < 2) {
+          this.logger.warn(`Persist attempt ${attempt + 1} failed (${message}), retrying…`);
+          await new Promise((r) => setTimeout(r, 1_000));
+          continue;
+        }
+        this.logger.warn(`Failed to persist MeasureReport/${id}: ${message}`);
+        return;
+      }
     }
   }
 
