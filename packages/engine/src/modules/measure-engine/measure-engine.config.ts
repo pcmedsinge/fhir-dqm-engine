@@ -6,6 +6,7 @@ import path from 'node:path';
 export class MeasureEngineConfig {
   readonly measuresPath: string;
   readonly persistToFhir: boolean;
+  readonly allowSyntheticSupplements: boolean;
 
   constructor(config: ConfigService) {
     this.measuresPath = config.get<string>(
@@ -13,5 +14,7 @@ export class MeasureEngineConfig {
       path.resolve(__dirname, '../../../measures'),
     );
     this.persistToFhir = config.get<string>('MEASUREREPORT_PERSIST_TO_FHIR', 'true') === 'true';
+    this.allowSyntheticSupplements =
+      config.get<string>('ALLOW_SYNTHETIC_VALUESET_SUPPLEMENTS', 'true') === 'true';
   }
 }

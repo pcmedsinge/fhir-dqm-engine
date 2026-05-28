@@ -2,6 +2,7 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { MeasureEngineConfig } from '../measure-engine.config';
+import { ValueSetIntegrityService } from '../../value-set-integrity/value-set-integrity.service';
 import type { LoadedMeasure, ValueSetMap } from '../interfaces/loaded-measure.interface';
 
 @Injectable()
@@ -9,7 +10,10 @@ export class MeasureLoaderService {
   private readonly logger = new Logger(MeasureLoaderService.name);
   private readonly cache = new Map<string, LoadedMeasure>();
 
-  constructor(private readonly config: MeasureEngineConfig) {}
+  constructor(
+    private readonly config: MeasureEngineConfig,
+    private readonly vsIntegrity: ValueSetIntegrityService,
+  ) {}
 
   listMeasureIds(): string[] {
     return readdirSync(this.config.measuresPath, { withFileTypes: true })
@@ -64,9 +68,12 @@ export class MeasureLoaderService {
         : {};
 
     const vsPath = path.join(measureDir, 'value-sets', 'valueSets.json');
-    const valueSets: ValueSetMap = existsSync(vsPath)
+    const canonicalValueSets: ValueSetMap = existsSync(vsPath)
       ? (JSON.parse(readFileSync(vsPath, 'utf8')) as ValueSetMap)
       : {};
+
+    const { valueSets, metadata: valueSetMetadata } =
+      this.vsIntegrity.applySupplements(canonicalValueSets);
 
     const loaded: LoadedMeasure = {
       id,
@@ -75,9 +82,14 @@ export class MeasureLoaderService {
       valueSets,
       mainLibraryId,
       mainLibraryVersion,
+      valueSetMetadata,
     };
     this.cache.set(id, loaded);
     this.logger.log(`Loaded measure '${id}' (${Object.keys(elmLibraries).length} libraries)`);
     return loaded;
+  }
+
+  getLoadedMeasures(): LoadedMeasure[] {
+    return [...this.cache.values()];
   }
 }

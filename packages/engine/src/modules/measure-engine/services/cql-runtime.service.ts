@@ -19,7 +19,9 @@ const POPULATION_NAMES = {
 function toValueSetDictionary(vsMap: ValueSetMap): ValueSetDictionary {
   const dict: ValueSetDictionary = {};
   for (const [oid, entries] of Object.entries(vsMap)) {
-    dict[oid] = { '': entries };
+    dict[oid] = {
+      '': entries.map((e) => ({ ...e, version: e.version ?? undefined })),
+    };
   }
   return dict;
 }

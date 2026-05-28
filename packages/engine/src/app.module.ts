@@ -18,6 +18,7 @@ import { MeasureEngineModule } from './modules/measure-engine/measure-engine.mod
         FHIR_HEALTH_CHECK_TIMEOUT_MS: Joi.number().integer().min(1).default(3000),
         MEASURES_PATH: Joi.string().optional(),
         MEASUREREPORT_PERSIST_TO_FHIR: Joi.string().valid('true', 'false').default('true'),
+        ALLOW_SYNTHETIC_VALUESET_SUPPLEMENTS: Joi.string().valid('true', 'false').default('true'),
       }),
     }),
     HealthModule,

@@ -5,7 +5,10 @@ import { MeasureEngineConfig } from '../measure-engine.config';
 import type { PatientResultsMap } from '../interfaces/patient-results.interface';
 import type { LoadedMeasure } from '../interfaces/loaded-measure.interface';
 
-const MOCK_MEASURE: Pick<LoadedMeasure, 'id'> = { id: 'cms165-cbp' };
+const MOCK_MEASURE: Pick<LoadedMeasure, 'id' | 'fhirMeasure'> = {
+  id: 'cms165-cbp',
+  fhirMeasure: {},
+};
 
 function makeResults(rows: Array<[boolean, boolean, boolean, boolean]>): PatientResultsMap {
   const map: PatientResultsMap = new Map();

@@ -1,22 +1,23 @@
 import { Test } from '@nestjs/testing';
 import { MeasureLoaderService } from './measure-loader.service';
 import { MeasureEngineConfig } from '../measure-engine.config';
+import { ValueSetIntegrityService } from '../../value-set-integrity/value-set-integrity.service';
 import path from 'node:path';
 
 describe('MeasureLoaderService', () => {
   let service: MeasureLoaderService;
 
   beforeEach(async () => {
+    const mockConfig = {
+      measuresPath: path.resolve(__dirname, '../../../../measures'),
+      persistToFhir: true,
+      allowSyntheticSupplements: true,
+    };
     const module = await Test.createTestingModule({
       providers: [
         MeasureLoaderService,
-        {
-          provide: MeasureEngineConfig,
-          useValue: {
-            measuresPath: path.resolve(__dirname, '../../../../measures'),
-            persistToFhir: true,
-          },
-        },
+        { provide: MeasureEngineConfig, useValue: mockConfig },
+        { provide: ValueSetIntegrityService, useValue: new ValueSetIntegrityService(mockConfig as MeasureEngineConfig) },
       ],
     }).compile();
     service = module.get(MeasureLoaderService);

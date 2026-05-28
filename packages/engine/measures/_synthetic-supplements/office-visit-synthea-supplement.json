@@ -1,0 +1,50 @@
+{
+  "_comment": "Synthetic-data supplement for the Office Visit value set (OID 2.16.840.1.113883.3.464.1003.101.12.1001). These 7 SNOMED codes are used by Synthea-generated patients but are NOT in the canonical VSAC value set. This file is loaded only when ALLOW_SYNTHETIC_VALUESET_SUPPLEMENTS=true (default in dev). Results computed with this supplement active are NOT VSAC-spec-compliant.",
+  "valueSetOid": "http://cts.nlm.nih.gov/fhir/ValueSet/2.16.840.1.113883.3.464.1003.101.12.1001",
+  "valueSetName": "Office Visit",
+  "reason": "synthetic-data supplement — Synthea generates encounters using these SNOMED codes which are absent from the canonical VSAC Office Visit value set",
+  "addedCodes": [
+    {
+      "code": "185347001",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Encounter for check up (procedure)"
+    },
+    {
+      "code": "185349003",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Encounter for check up (procedure)"
+    },
+    {
+      "code": "162673000",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "General examination of patient (procedure)"
+    },
+    {
+      "code": "185345009",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Encounter for symptom (procedure)"
+    },
+    {
+      "code": "390906007",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Follow-up encounter (procedure)"
+    },
+    {
+      "code": "308335008",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Patient encounter procedure"
+    },
+    {
+      "code": "698314001",
+      "system": "http://snomed.info/sct",
+      "version": null,
+      "display": "Consultation for treatment (procedure)"
+    }
+  ]
+}

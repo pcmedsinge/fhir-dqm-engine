@@ -8,7 +8,8 @@ const BP_LOINC_CODE = '85354-9';
 type AnyResource = FhirResource & Record<string, unknown>;
 
 function hasBpCode(obs: AnyResource): boolean {
-  const codings = ((obs['code'] as Record<string, unknown>)?.['coding'] as Array<Record<string, unknown>>) ?? [];
+  const codings =
+    ((obs['code'] as Record<string, unknown>)?.['coding'] as Array<Record<string, unknown>>) ?? [];
   return codings.some((c) => c['code'] === BP_LOINC_CODE);
 }
 
@@ -60,7 +61,13 @@ export class FhirDataSourceAdapter {
       : null;
 
     const byPatient = new Map<string, AnyResource[]>();
-    for (const res of [...conditions, ...taggedObs, ...encounters, ...procedures, ...medicationRequests]) {
+    for (const res of [
+      ...conditions,
+      ...taggedObs,
+      ...encounters,
+      ...procedures,
+      ...medicationRequests,
+    ]) {
       const ref = this.extractPatientRef(res);
       if (!ref) continue;
       if (patientSet && !patientSet.has(ref)) continue;
